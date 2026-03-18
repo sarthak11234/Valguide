@@ -1,0 +1,81 @@
+This is a **Product Requirements Document (PRD)** for the **"Valorant Recruit Protocol"** platform. It serves as the single source of truth for the development, design, and content strategy of the site.
+
+---
+
+# PRD: Valorant Recruit Protocol (VRP)
+**Version:** 1.0 | **Status:** Draft | **Date:** March 18, 2026
+
+## 1. Executive Summary
+The **Valorant Recruit Protocol (VRP)** is an interactive web-based hub designed to onboard new players into the Valorant ecosystem. It bridges the gap between raw gameplay and the deep lore of the "Valorant Protocol," providing tactical tools (lineups, sensitivity calculators) and narrative depth (agent backstories, map lore) through a high-fidelity, AI-enhanced UI.
+
+---
+
+## 2. Target Audience
+* **The Newbie:** Players who just downloaded the game and are overwhelmed by 20+ agents and tactical shooting mechanics.
+* **The Lore Enthusiast:** Players interested in the "Alpha vs. Omega" narrative and character origins.
+* **The Tactical Improver:** Players looking for quick-access lineups and settings optimization.
+
+---
+
+## 3. Functional Requirements
+
+| Feature ID | Feature Name | Description | Priority |
+| :--- | :--- | :--- | :--- |
+| **FR-01** | **Agent Archive** | Interactive profiles for all agents including lore, abilities, and video previews. | P0 |
+| **FR-02** | **"SAGE" AI Chatbot** | A natural language interface to answer questions about mechanics, lore, and "who should I main?" | P0 |
+| **FR-03** | **Lore Timeline** | A scrollable history of the "First Light," the founding of the Protocol, and the Mirror World. | P1 |
+| **FR-04** | **Tactical Toolkit** | A sensitivity (eDPI) calculator and weapon stat comparison table. | P1 |
+| **FR-05** | **Map Intel** | Deep-dives into map stories (e.g., why is there a portal on Bind?) and basic site-hold lineups. | P2 |
+
+---
+
+## 4. User Experience (UX) & Design
+### Visual Identity
+The UI must feel like an extension of the Valorant game client (Riot Games' "Tactical-Tech" style).
+* **Aesthetic:** Brutalist, geometric, glitch-effect animations, and high-contrast typography.
+* **Media-First:** Every agent and map page should lead with a high-definition video or cinematic loop.
+* **Navigation:** A "Command Center" dashboard rather than a traditional top-nav bar.
+
+### User Flow
+1.  **Landing:** Cinematic intro explaining the "Recruit" status.
+2.  **Onboarding:** AI Chatbot asks: *"What is your FPS experience?"* to tailor content.
+3.  **Discovery:** User explores Agents, Maps, or Lore via a modular grid.
+
+---
+
+## 5. Technical Architecture
+* **Frontend:** Next.js (App Router) for high performance and SEO.
+* **Backend/AI:** Vercel AI SDK integrated with **Gemini 1.5 Pro** for the "SAGE" chatbot.
+* **Data Sourcing:** **Valorant-API.com** for real-time fetching of agent stats, icons, and skins to ensure the site is always up-to-date with game patches.
+* **Video Hosting:** Cloudinary or Mux for optimized, fast-loading video backgrounds.
+
+---
+
+## 6. Content Requirements
+### The "Sensi" Guide
+For the sensitivity calculator, use the following formula for eDPI calculation to be displayed to users:
+$$\text{eDPI} = \text{Mouse DPI} \times \text{In-game Sensitivity}$$
+*Target Range for Beginners:* 200–400 eDPI.
+
+### Lore Pillars
+* **First Light:** The event that changed Earth.
+* **Radianite:** The source of power.
+* **Mirror World:** The introduction of "Omega Earth" copies of our agents.
+
+---
+
+## 7. Success Metrics
+* **Retention:** Users returning to check lineups during a live match.
+* **Engagement:** Average time spent in the Lore Archive (> 5 minutes).
+* **Utility:** Number of sensitivity calculations performed.
+
+---
+
+## 8. Roadmap
+* **Phase 1 (MVP):** Agent Archive, Basic Lore, and Chatbot integration.
+* **Phase 2:** Tactical Toolkit (Sens calculator) and Weapon comparisons.
+* **Phase 3:** Interactive Map Lineups (User-contributed or curated videos).
+
+---
+
+### Would you like me to generate a detailed "Content Map" for the Agent Backstories, or should we focus on the UI Mockup descriptions for the developer?
