@@ -1,0 +1,47 @@
+# ValoGuide UI Design Specification
+**Theme**: Comic-Style Tactical-Tech (Inspired by "Zombie NFT / Undeads" comic aesthetics blending with Valorant's universe)
+
+## 1. Visual Identity & Aesthetic
+The UI will synthesize Valorant's established "Tactical-Tech" interface with an edgy, action-packed "Comic-Book" visual language, drawing from the requested Zombie NFT inspiration.
+
+*   **Linework & Borders**: Heavy, bold black strokes (e.g., 3px-5px `#0F1923`) around all containers, cards, and buttons to evoke a hand-drawn comic feel.
+*   **Textures**: Subtle **halftone dot patterns** in the backgrounds, overlays, and within solid color blocks to emulate vintage comic book printing techniques.
+*   **Typography**:
+    *   *Headings*: Slanted, blocky, and aggressive sans-serif fonts (e.g., Tungsten, or the official Valorant font) with solid offset drop shadows.
+    *   *Body*: Clean, readable sans-serif (e.g., Inter or DIN Next) for tactical information and lore readability.
+*   **Color Palette**:
+    *   *Primary*: Valorant Red (`#FF4655`)
+    *   *Accents (The "Undead" touch)*: Toxic Radianite Green (`#00E5FF` or a neon `#39FF14`) to capture the eerie, bio-hazard vibe of the inspiration.
+    *   *Backgrounds*: Deep Dark Navy/Black (`#0F1923`) and stark Off-White (`#ECE8E1`) to maintain high contrast for comic panels.
+
+## 2. Layout & Structure (The "Comic Panel" Grid)
+Instead of standard web cards or elegant glassmorphism, the content will be contained in bold, sometimes irregular or angled "comic panels."
+
+*   **Shapes**: Sharp, unrounded corners. Some panels may have slight asymmetrical slants.
+*   **Hover Effects (Pop-Out)**: When hovering over interactive elements (like an Agent card), the panel translates slightly up and left, leaving behind a solid, hard-edged neon or black drop shadow—mimicking a physical comic book popping off the page.
+*   **Dividers**: Jagged lines or diagonal cuts rather than straight horizontal borders between sections.
+
+## 3. Key Components
+
+### A. The "Command Center" (Hero Section)
+*   **Background**: A high-impact, looping cinematic or a static stylized "comic cover" featuring key agents. A halftone overlay will be applied over the media.
+*   **Call to Action (CTA)**: Large, skewed buttons with thick black borders. 
+*   **Motion**: Hovering over the CTA makes the text shake slightly with "action lines" radiating outward.
+
+### B. Agent Archive (Character Roster)
+*   **Grid View**: Agents are displayed as character cards that look like individual comic book issue covers.
+*   **Portraits**: High-contrast, duotone or graphic-novel style filters applied to the agent models.
+*   **Lore Expansion**: Clicking an agent opens a modal framed like a dynamic double-page comic spread, categorized by lore, abilities, and stats.
+
+### C. "SAGE" AI Chatbot Interface
+*   **Chat Bubbles**: Designed explicitly as comic book speech and thought bubbles, complete with the classic "tail" pointing to the avatar.
+*   **Bot Persona**: SAGE's avatar is stylized with halftone shadows. 
+*   **Quirks**: Comic-style typographic sound effects (e.g., small graphic text like *WHIRRR* or *BEEP...*) could appear playfully when the bot is "typing" or generating a response.
+
+### D. Tactical Toolkit & Lore Timeline
+*   **Lore Timeline**: A vertical scrolling layout where each historical event ("First Light," "Mirror World") is a self-contained horizontal comic strip panel.
+*   **Calculators (eDPI/Sens)**: Input fields resemble hand-drawn or stamped boxes. Numbers are rendered large and punchy.
+
+## 4. Animation & Interaction
+*   **Micro-interactions**: Use comic-style visual elements (e.g., a tiny *ZAP!* or *BOOM!* graphic) briefly flashing when tactical tools are clicked or formulas are calculated.
+*   **Transitions**: Fast, snappy page transitions using "speed lines" (horizontal streaks) or page-flip masking effects to maintain the comic illusion.
