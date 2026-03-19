@@ -1,9 +1,22 @@
 "use client";
 
-import { useChat } from "ai/react";
+import { useChat } from "@ai-sdk/react";
+import { useState } from "react";
 
 export default function SageChatbot() {
-  const { messages, input, handleInputChange, handleSubmit } = useChat();
+  const { messages, sendMessage } = useChat();
+  const [input, setInput] = useState("");
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInput(e.target.value);
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!input.trim()) return;
+    sendMessage({ parts: [{ type: 'text', text: input }], role: 'user' });
+    setInput("");
+  };
 
   return (
     <div className="min-h-screen bg-[#0F1923] text-[#ECE8E1] p-8 font-sans">
@@ -22,7 +35,7 @@ export default function SageChatbot() {
             </div>
           )}
 
-          {messages.map((m) => (
+          {messages.map((m: any) => (
             <div key={m.id} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
               <div 
                 className={`max-w-[80%] border-4 border-black p-4 relative ${
@@ -36,7 +49,12 @@ export default function SageChatbot() {
                 <div className={`absolute bottom-[0px] ${m.role === 'user' ? '-right-3 border-l-4' : '-left-3 border-r-4'} w-0 h-0 border-t-8 border-b-8 border-transparent border-t-black transform translate-y-4`} />
                 
                 <p className="font-bold mb-1 uppercase tracking-wider">{m.role === 'user' ? 'Recruit' : 'SAGE'}</p>
-                <div className="text-lg leading-relaxed whitespace-pre-wrap">{m.content}</div>
+                {m.parts?.map((part: any, index: number) => {
+                  if (part.type === 'text') {
+                    return <div key={index} className="text-lg leading-relaxed whitespace-pre-wrap">{part.text}</div>;
+                  }
+                  return null;
+                })}
               </div>
             </div>
           ))}
