@@ -26,7 +26,7 @@ git checkout -b <branch-name>
 #   Examples:
 #     git checkout -b vedant/frontend-core
 #     git checkout -b sarthak/ai-chatbot-backend
-#     git checkout -b gaurav/agents-lore
+#     git checkout -b gourav/agents-lore
 
 # 4. Stage and commit your changes
 git add .
@@ -47,7 +47,7 @@ git pull origin main
 |---------|------------------------------|--------------------------------|
 | Vedant  | `vedant/<feature-name>`      | `vedant/hero-section`          |
 | Sarthak | `sarthak/<feature-name>`     | `sarthak/sage-chatbot`         |
-| Gaurav  | `gaurav/<feature-name>`      | `gaurav/agent-archive`         |
+| Gourav  | `gourav/<feature-name>`      | `gourav/agent-archive`         |
 
 ### Tips
 - **Never commit directly to `main`** — always use a feature branch + PR.
@@ -120,7 +120,7 @@ git pull origin main
 
 ---
 
-## 👤 Part 3 — Gaurav (Agent Archive, Lore & Map Intel)
+## 👤 Part 3 — Gourav (Agent Archive, Lore & Map Intel)
 > **Focus:** Agent character pages, lore timeline, map deep-dives, and content-heavy sections.
 
 ### Agent Archive (Character Roster)
@@ -160,8 +160,8 @@ git pull origin main
 |-------|-------|------------|
 | **Phase 1 (MVP)** | Project setup, Agent Archive, Basic Lore, SAGE Chatbot | All three |
 | **Phase 2** | Tactical Toolkit (Sens calculator, Weapon comparison) | Sarthak + Vedant |
-| **Phase 3** | Map Intel with interactive lineups | Gaurav + Vedant |
+| **Phase 3** | Map Intel with interactive lineups | Gourav + Vedant |
 
 ---
 
-> **Next Step:** Each person creates their branch (`vedant/...`, `sarthak/...`, `gaurav/...`), picks their first `[ ]` item, and starts building! 🚀
+> **Next Step:** Each person creates their branch (`vedant/...`, `sarthak/...`, `gourav/...`), picks their first `[ ]` item, and starts building! 🚀

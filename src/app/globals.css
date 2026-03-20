@@ -1,8 +1,18 @@
 @import "tailwindcss";
 
+/* ========================================
+   VALOGUIDE — COMIC-STYLE DESIGN SYSTEM
+   ======================================== */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --val-red: #FF4655;
+  --val-cyan: #00E5FF;
+  --val-green: #39FF14;
+  --val-navy: #0F1923;
+  --val-offwhite: #ECE8E1;
+  --val-black: #0a0a0a;
+  --background: #0F1923;
+  --foreground: #ECE8E1;
 }
 
 @theme inline {
@@ -12,15 +22,831 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--val-navy);
+  color: var(--val-offwhite);
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+/* ========================================
+   HALFTONE BACKGROUND PATTERN
+   ======================================== */
+.agents-page,
+.lore-page,
+.maps-page {
+  min-height: 100vh;
+  padding: 2rem 1.5rem 4rem;
+  background-color: var(--val-navy);
+  background-image: radial-gradient(circle, rgba(57, 255, 20, 0.04) 1px, transparent 1px);
+  background-size: 12px 12px;
+}
+
+/* ========================================
+   PAGE HEADER — COMIC PANEL BADGE
+   ======================================== */
+.page-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  padding-top: 1rem;
+}
+
+.page-header__badge {
+  display: inline-block;
+  background: var(--val-red);
+  border: 4px solid #000;
+  padding: 0.6rem 2.5rem;
+  transform: skewX(-8deg);
+  box-shadow: 8px 8px 0px #000;
+  margin-bottom: 1rem;
+}
+
+.page-header__badge h1 {
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  color: #000;
+  font-style: italic;
+  transform: skewX(8deg);
+  margin: 0;
+}
+
+.page-header__badge--cyan {
+  background: var(--val-cyan);
+  box-shadow: 8px 8px 0px var(--val-red);
+}
+
+.page-header__badge--green {
+  background: var(--val-green);
+  box-shadow: 8px 8px 0px var(--val-cyan);
+}
+
+.page-header__sub {
+  font-size: 0.9rem;
+  letter-spacing: 0.2em;
+  color: rgba(236, 232, 225, 0.5);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* ========================================
+   ROLE FILTERS
+   ======================================== */
+.role-filters {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.role-filter {
+  background: transparent;
+  border: 3px solid rgba(236, 232, 225, 0.2);
+  color: var(--val-offwhite);
+  padding: 0.5rem 1.2rem;
+  font-weight: 800;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+}
+
+.role-filter:hover {
+  border-color: var(--val-red);
+  color: var(--val-red);
+}
+
+.role-filter--active {
+  background: var(--val-red);
+  border-color: var(--val-red);
+  color: #000;
+  box-shadow: 4px 4px 0px #000;
+}
+
+/* ========================================
+   AGENTS GRID
+   ======================================== */
+.agents-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* ========================================
+   AGENT CARD — COMIC BOOK ISSUE COVER
+   ======================================== */
+.agent-card {
+  position: relative;
+  cursor: pointer;
+  border: 4px solid #000;
+  background: var(--val-navy);
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+}
+
+.agent-card:hover {
+  box-shadow: 8px 8px 0px var(--val-cyan);
+}
+
+.agent-card__issue {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: var(--val-red);
+  border: 3px solid #000;
+  padding: 2px 8px;
+  z-index: 3;
+}
+
+.agent-card__issue span {
+  font-size: 0.7rem;
+  font-weight: 900;
+  color: #000;
+  letter-spacing: 0.1em;
+}
+
+.agent-card__role {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid rgba(236, 232, 225, 0.2);
+  padding: 3px 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  z-index: 3;
+}
+
+.agent-card__role span {
+  font-size: 0.55rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--val-offwhite);
+}
+
+.agent-card__portrait {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  overflow: hidden;
+}
+
+.agent-card__bg {
+  position: absolute;
+  inset: 0;
+}
+
+.agent-card__img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center top;
+  filter: contrast(1.1) saturate(0.85);
+  transition: transform 0.3s ease, filter 0.3s ease;
+  z-index: 1;
+}
+
+.agent-card:hover .agent-card__img {
+  transform: scale(1.08);
+  filter: contrast(1.2) saturate(1);
+}
+
+.agent-card__name-bar {
+  background: #000;
+  border-top: 4px solid var(--agent-accent, var(--val-red));
+  padding: 0.6rem 0.8rem;
+}
+
+.agent-card__name-bar h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  color: var(--val-offwhite);
+}
+
+.agent-card__shadow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 0 -40px 30px -20px rgba(0, 0, 0, 0.6);
+  z-index: 2;
+}
+
+/* Card skeleton */
+.agent-card-skeleton {
+  border: 4px solid rgba(255, 255, 255, 0.05);
+  height: 320px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+  animation: skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+/* ========================================
+   AGENT MODAL — DOUBLE-PAGE COMIC SPREAD
+   ======================================== */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 1rem;
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: var(--val-navy);
+  border: 5px solid #000;
+  box-shadow: 12px 12px 0px var(--modal-accent, var(--val-red));
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: var(--val-red);
+  border: 3px solid #000;
+  color: #000;
+  width: 36px;
+  height: 36px;
+  font-size: 1.1rem;
+  font-weight: 900;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.modal-close:hover {
+  background: #fff;
+  transform: scale(1.1);
+}
+
+/* Modal header */
+.modal-header {
+  position: relative;
+  height: 260px;
+  overflow: hidden;
+}
+
+.modal-header__bg {
+  position: absolute;
+  inset: 0;
+}
+
+.modal-header__content {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+  padding: 1.5rem;
+  z-index: 2;
+}
+
+.modal-header__portrait {
+  height: 280px;
+  object-fit: contain;
+  filter: contrast(1.1) drop-shadow(0 0 20px rgba(0, 0, 0, 0.5));
+  margin-bottom: -1.5rem;
+}
+
+.modal-header__info {
+  margin-left: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.modal-header__role-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid rgba(236, 232, 225, 0.3);
+  padding: 4px 12px;
+  margin-bottom: 0.5rem;
+}
+
+.modal-header__role-badge span {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--val-offwhite);
+}
+
+.modal-header__name {
+  font-size: 2.5rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  color: var(--val-offwhite);
+  margin: 0;
+  text-shadow: 3px 3px 0px #000;
+  line-height: 1;
+}
+
+/* Modal tabs */
+.modal-tabs {
+  display: flex;
+  border-bottom: 4px solid #000;
+}
+
+.modal-tab {
+  flex: 1;
+  padding: 0.8rem 1rem;
+  background: rgba(0, 0, 0, 0.4);
+  border: none;
+  border-right: 3px solid #000;
+  color: rgba(236, 232, 225, 0.5);
+  font-weight: 800;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+}
+
+.modal-tab:last-child {
+  border-right: none;
+}
+
+.modal-tab:hover {
+  color: var(--val-offwhite);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.modal-tab--active {
+  background: var(--val-red);
+  color: #000;
+}
+
+/* Modal body */
+.modal-body {
+  padding: 1.5rem;
+  min-height: 200px;
+}
+
+.modal-tab-content {
+  animation: fadeInUp 0.3s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Lore tab */
+.lore-section {
+  margin-bottom: 1.5rem;
+}
+
+.lore-section__title {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  color: var(--val-red);
+  margin: 0 0 0.6rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid rgba(255, 70, 85, 0.3);
+}
+
+.lore-section__text {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(236, 232, 225, 0.85);
+  margin: 0;
+}
+
+.lore-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.lore-tag {
+  background: rgba(255, 70, 85, 0.15);
+  border: 2px solid var(--val-red);
+  padding: 4px 12px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--val-red);
+}
+
+/* Abilities tab */
+.abilities-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.ability-card {
+  background: rgba(0, 0, 0, 0.3);
+  border: 3px solid rgba(236, 232, 225, 0.1);
+  padding: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+.ability-card:hover {
+  border-color: var(--val-cyan);
+}
+
+.ability-card__header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 0.6rem;
+}
+
+.ability-card__icon {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  filter: brightness(1.2);
+}
+
+.ability-card__slot {
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  color: var(--val-cyan);
+}
+
+.ability-card__name {
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  color: var(--val-offwhite);
+  margin: 0;
+}
+
+.ability-card__desc {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: rgba(236, 232, 225, 0.65);
+  margin: 0;
+}
+
+/* Stats tab */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.stat-block {
+  background: rgba(0, 0, 0, 0.3);
+  border: 3px solid rgba(236, 232, 225, 0.1);
+  padding: 1rem;
+}
+
+.stat-block__label {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  color: var(--val-cyan);
+  margin-bottom: 0.4rem;
+}
+
+.stat-block__value {
+  display: block;
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--val-offwhite);
+}
+
+.stat-block__value--sm {
+  font-size: 0.85rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: rgba(236, 232, 225, 0.7);
+}
+
+/* ========================================
+   LORE TIMELINE
+   ======================================== */
+.timeline {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.timeline__line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, var(--val-red), var(--val-cyan), var(--val-green), var(--val-red));
+  transform: translateX(-50%);
+}
+
+.timeline-event {
+  position: relative;
+  display: flex;
+  margin-bottom: 3rem;
+  padding: 0 1rem;
+}
+
+.timeline-event--left {
+  justify-content: flex-start;
+  padding-right: calc(50% + 2rem);
+}
+
+.timeline-event--right {
+  justify-content: flex-end;
+  padding-left: calc(50% + 2rem);
+}
+
+.timeline-event__dot {
+  position: absolute;
+  left: 50%;
+  top: 1.5rem;
+  width: 16px;
+  height: 16px;
+  border: 4px solid #000;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  box-shadow: 0 0 12px currentColor;
+}
+
+.timeline-event__card {
+  background: rgba(0, 0, 0, 0.5);
+  border: 4px solid #000;
+  padding: 1.2rem;
+  box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.4);
+  position: relative;
+  max-width: 100%;
+}
+
+.timeline-event__card::before {
+  content: '';
+  position: absolute;
+  top: 1.2rem;
+  width: 20px;
+  height: 4px;
+  background: #000;
+}
+
+.timeline-event--left .timeline-event__card::before {
+  right: -24px;
+}
+
+.timeline-event--right .timeline-event__card::before {
+  left: -24px;
+}
+
+.timeline-event__year {
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.25em;
+  margin-bottom: 0.3rem;
+}
+
+.timeline-event__title {
+  font-size: 1.2rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  color: var(--val-offwhite);
+  margin: 0 0 0.6rem;
+}
+
+.timeline-event__desc {
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: rgba(236, 232, 225, 0.7);
+  margin: 0 0 0.8rem;
+}
+
+.timeline-event__category {
+  display: inline-block;
+  padding: 3px 10px;
+  font-size: 0.6rem;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  color: #000;
+}
+
+.timeline__end {
+  text-align: center;
+  padding-top: 1rem;
+}
+
+.timeline__end span {
+  display: inline-block;
+  background: var(--val-red);
+  border: 4px solid #000;
+  padding: 0.5rem 1.5rem;
+  font-weight: 900;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  color: #000;
+  font-style: italic;
+  box-shadow: 4px 4px 0px #000;
+}
+
+/* ========================================
+   MAP INTEL
+   ======================================== */
+.maps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.map-card {
+  position: relative;
+  background: rgba(0, 0, 0, 0.4);
+  border: 4px solid #000;
+  padding: 0;
+  cursor: default;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+}
+
+.map-card:hover {
+  box-shadow: 6px 6px 0px var(--map-accent, var(--val-red));
+}
+
+.map-card__header {
+  padding: 1rem 1.2rem;
+  border-bottom: 4px solid;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.map-card__name {
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  color: var(--val-offwhite);
+  margin: 0;
+}
+
+.map-card__coord {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  font-family: monospace;
+}
+
+.map-card__desc {
+  padding: 1rem 1.2rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: rgba(236, 232, 225, 0.8);
+  margin: 0;
+  border-bottom: 2px solid rgba(236, 232, 225, 0.05);
+}
+
+.map-card__lore {
+  padding: 1rem 1.2rem;
+}
+
+.map-card__lore-label {
+  font-size: 0.6rem;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.map-card__lore-text {
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: rgba(236, 232, 225, 0.55);
+  margin: 0;
+}
+
+.map-card__shadow {
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.map-card:hover .map-card__shadow {
+  opacity: 0.15;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media (max-width: 768px) {
+  .page-header__badge h1 {
+    font-size: 1.3rem;
+  }
+
+  .agents-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
+  }
+
+  .agent-card__portrait {
+    height: 200px;
+  }
+
+  /* Timeline becomes single-column on mobile */
+  .timeline__line {
+    left: 20px;
+  }
+
+  .timeline-event--left,
+  .timeline-event--right {
+    padding-left: 3rem;
+    padding-right: 0;
+    justify-content: flex-start;
+  }
+
+  .timeline-event__dot {
+    left: 20px;
+  }
+
+  .timeline-event--left .timeline-event__card::before,
+  .timeline-event--right .timeline-event__card::before {
+    left: -24px;
+    right: auto;
+  }
+
+  .modal-header {
+    height: 200px;
+  }
+
+  .modal-header__portrait {
+    height: 220px;
+  }
+
+  .modal-header__name {
+    font-size: 1.5rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .maps-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========================================
+   SCROLLBAR STYLING
+   ======================================== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--val-navy);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--val-red);
+  border: 2px solid #000;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff6673;
 }
