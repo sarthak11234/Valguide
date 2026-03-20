@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎮 ValoGuide — Valorant Recruit Protocol (VRP)
 
-## Getting Started
+> A comic-book styled tactical web app for Valorant players — built with Next.js, Tailwind CSS, and the Vercel AI SDK.
 
-First, run the development server:
+---
 
+## ✨ Features
+
+### 🤖 SAGE Terminal (`/sage`)
+- AI-powered chatbot powered by **Google Gemini 1.5 Pro** via the Vercel AI SDK
+- SAGE persona trained on Valorant lore, mechanics, and economy
+- Comic-style speech bubbles, SAGE avatar, and live `*WHIRRR* / *BEEP*` typing indicator
+
+### 🔧 Tactical Toolkit (`/toolkit`)
+- **eDPI Calculator** — `Mouse DPI × In-Game Sensitivity`
+  - Beginner target range: **200–400 eDPI**
+  - Contextual feedback tips + `*ZAP!*` flash animation
+  - Pro player reference table (TenZ, s0m, yay, Aspas, Derke)
+- **Weapon Stat Comparison** — Live data from the Valorant-API
+  - Category tabs: Rifles, Pistols, SMGs, Snipers, Shotguns, Heavy
+  - Clickable row highlight, fire rate, magazine, wall pen, and cost
+
+### 🔌 API Proxy Routes
+| Route | Description |
+|-------|-------------|
+| `GET /api/agents` | Playable agent data (icons, abilities, stats) |
+| `GET /api/weapons` | Full weapon roster with stats |
+| `POST /api/chat` | SAGE AI chatbot streaming endpoint |
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone & Install
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <repo-url>
+cd Valguide
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Set up Environment
+Create a `.env.local` file in the root:
+```env
+GOOGLE_GENERATIVE_AI_API_KEY=your_gemini_api_key_here
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Run Locally
+```bash
+npm run dev
+```
+Open [http://localhost:3000](http://localhost:3000)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🛠️ Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+| Tech | Purpose |
+|------|---------|
+| **Next.js 16** (App Router) | Full-stack framework |
+| **Tailwind CSS v4** | Styling |
+| **Vercel AI SDK v5** + `@ai-sdk/react` | AI streaming |
+| **Google Gemini 1.5 Pro** | Language model |
+| **valorant-api.com** | Game data (agents, weapons) |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 👥 Team & Branching
 
-## Deploy on Vercel
+| Person | Branch Pattern | Focus Area |
+|--------|---------------|------------|
+| **Vedant** | `vedant/<feature>` | Frontend Core, Hero, Navigation |
+| **Sarthak** | `sarthak/<feature>` | AI Backend, API Routes, Toolkit |
+| **Gaurav** | `gaurav/<feature>` | Agent Archive, Lore, Map Intel |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Branch rules:**
+- Never commit directly to `main` — always use a PR
+- Pull `main` often to avoid merge conflicts
+- Commit prefix convention: `feat:`, `fix:`, `style:`, `docs:`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 📅 Roadmap
+
+| Phase | Status | Scope |
+|-------|--------|-------|
+| **Phase 1 (MVP)** | ✅ Done | SAGE Chatbot + API Proxy Routes |
+| **Phase 2** | ✅ Done | Tactical Toolkit (eDPI + Weapon Comparison) |
+| **Phase 3** | 🔲 Pending | Agent Archive, Lore Timeline, Map Intel |
+
+---
+
+> **Data sourced from [valorant-api.com](https://valorant-api.com)** — an unofficial community API. Not affiliated with Riot Games.
