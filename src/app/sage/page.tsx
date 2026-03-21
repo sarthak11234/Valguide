@@ -31,10 +31,6 @@ export default function SageChatbot() {
   const { messages, sendMessage, status } = useChat();
   const [input, setInput] = useState("");
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInput(e.target.value);
-  };
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!input.trim()) return;
@@ -98,7 +94,7 @@ export default function SageChatbot() {
             className="flex-1 bg-white border-4 border-black px-6 py-4 text-black font-bold text-xl uppercase placeholder-gray-500 shadow-[4px_4px_0px_#ECE8E1] focus:outline-none"
             value={input}
             placeholder="ASK SAGE A QUESTION..."
-            onChange={handleInputChange}
+            onChange={(e) => setInput(e.target.value)}
           />
           <button 
             type="submit" 
