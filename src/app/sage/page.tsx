@@ -1,18 +1,41 @@
 "use client";
 
-import { useState } from "react";
 import { useChat } from "@ai-sdk/react";
+import { useState, useEffect } from "react";
+
+const TypingIndicator = () => {
+  const [text, setText] = useState("*WHIRRR*");
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setText(prev => prev === "*WHIRRR*" ? "*BEEP*" : "*WHIRRR*");
+    }, 500);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="flex justify-start items-end mb-4">
+      <div className="w-12 h-12 flex-shrink-0 border-4 border-black bg-[#FF4655] shadow-[4px_4px_0px_#0F1923] mr-4 relative overflow-hidden bg-[radial-gradient(circle,#000_1px,transparent_1px)] bg-[size:4px_4px]">
+        <img src="https://media.valorant-api.com/agents/569fdd95-4d10-43ab-ca70-79becc718b46/displayicon.png" alt="SAGE" className="w-full h-full object-cover relative z-10" />
+      </div>
+      <div className="max-w-[80%] border-4 border-black p-4 relative bg-[#39FF14] text-black shadow-[4px_4px_0px_#0F1923]" style={{ clipPath: 'polygon(0% 0%, 100% 0%, 100% 90%, 95% 100%, 0% 100%)' }}>
+        <div className="absolute bottom-[0px] -left-3 border-r-4 w-0 h-0 border-t-8 border-b-8 border-transparent border-t-black transform translate-y-4" />
+        <p className="font-bold mb-1 uppercase tracking-wider">SAGE</p>
+        <div className="text-lg leading-relaxed whitespace-pre-wrap font-black italic animate-pulse">{text}</div>
+      </div>
+    </div>
+  );
+};
 
 export default function SageChatbot() {
+  const { messages, sendMessage, status } = useChat();
   const [input, setInput] = useState("");
-  const { messages, sendMessage } = useChat();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!input.trim()) return;
-    const text = input;
+    sendMessage({ parts: [{ type: 'text', text: input }], role: 'user' });
     setInput("");
-    await sendMessage({ role: "user", parts: [{ type: "text", text: text }] });
   };
 
   return (
@@ -32,30 +55,38 @@ export default function SageChatbot() {
             </div>
           )}
 
-          {messages.map((m) => {
-            const textContent = m.parts
-              ?.filter((p): p is { type: "text"; text: string } => p.type === "text")
-              .map((p) => p.text)
-              .join("") ?? "";
-
-            return (
-              <div key={m.id} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div 
-                  className={`max-w-[80%] border-4 border-black p-4 relative ${
-                    m.role === 'user' 
-                      ? 'bg-[#ECE8E1] text-black shadow-[4px_4px_0px_#FF4655]' 
-                      : 'bg-[#39FF14] text-black shadow-[4px_4px_0px_#0F1923]'
-                  }`}
-                  style={{ clipPath: 'polygon(0% 0%, 100% 0%, 100% 90%, 95% 100%, 0% 100%)' }}
-                >
-                  <div className={`absolute bottom-[0px] ${m.role === 'user' ? '-right-3 border-l-4' : '-left-3 border-r-4'} w-0 h-0 border-t-8 border-b-8 border-transparent border-t-black transform translate-y-4`} />
-                  
-                  <p className="font-bold mb-1 uppercase tracking-wider">{m.role === 'user' ? 'Recruit' : 'SAGE'}</p>
-                  <div className="text-lg leading-relaxed whitespace-pre-wrap">{textContent}</div>
+          {messages.map((m: any) => (
+            <div key={m.id} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start items-end mb-4'}`}>
+              
+              {m.role !== 'user' && (
+                <div className="w-12 h-12 flex-shrink-0 border-4 border-black bg-[#FF4655] shadow-[4px_4px_0px_#0F1923] mr-4 relative overflow-hidden bg-[radial-gradient(circle,#000_1px,transparent_1px)] bg-[size:4px_4px]">
+                  <img src="https://media.valorant-api.com/agents/569fdd95-4d10-43ab-ca70-79becc718b46/displayicon.png" alt="SAGE" className="w-full h-full object-cover relative z-10" />
                 </div>
+              )}
+
+              <div 
+                className={`max-w-[80%] border-4 border-black p-4 relative ${
+                  m.role === 'user' 
+                    ? 'bg-[#ECE8E1] text-black shadow-[4px_4px_0px_#FF4655]' 
+                    : 'bg-[#39FF14] text-black shadow-[4px_4px_0px_#0F1923]'
+                }`}
+                style={{ clipPath: 'polygon(0% 0%, 100% 0%, 100% 90%, 95% 100%, 0% 100%)' }}
+              >
+                {/* Comic Speech Bubble Tail */}
+                <div className={`absolute bottom-[0px] ${m.role === 'user' ? '-right-3 border-l-4' : '-left-3 border-r-4'} w-0 h-0 border-t-8 border-b-8 border-transparent border-t-black transform translate-y-4`} />
+                
+                <p className="font-bold mb-1 uppercase tracking-wider">{m.role === 'user' ? 'Recruit' : 'SAGE'}</p>
+                {m.parts?.map((part: any, index: number) => {
+                  if (part.type === 'text') {
+                    return <div key={index} className="text-lg leading-relaxed whitespace-pre-wrap">{part.text}</div>;
+                  }
+                  return null;
+                })}
               </div>
-            );
-          })}
+            </div>
+          ))}
+
+          {(status === 'submitted' || status === 'streaming') && <TypingIndicator />}
         </div>
 
         <form onSubmit={handleSubmit} className="mt-8 flex gap-4 relative">
