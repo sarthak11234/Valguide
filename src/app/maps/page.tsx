@@ -62,6 +62,34 @@ export default function MapsPage() {
               <p className="map-card__lore-text">{map.loreSummary}</p>
             </div>
 
+            {/* Tactical Lineups */}
+            {map.lineups.length > 0 && (
+              <div className="map-card__lineups">
+                <span
+                  className="map-card__lineups-label"
+                  style={{ color: map.accentColor }}
+                >
+                  TACTICAL LINEUPS
+                </span>
+                {map.lineups.map((lineup, li) => (
+                  <div key={li} className="lineup-entry">
+                    <div className="lineup-entry__header">
+                      <span
+                        className={`lineup-entry__side lineup-entry__side--${lineup.side}`}
+                      >
+                        {lineup.side.toUpperCase()}
+                      </span>
+                      <span className="lineup-entry__agent">
+                        {lineup.agent}
+                      </span>
+                    </div>
+                    <h4 className="lineup-entry__title">{lineup.title}</h4>
+                    <p className="lineup-entry__desc">{lineup.description}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+
             {/* Hover shadow */}
             <div
               className="map-card__shadow"

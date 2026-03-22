@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Agent } from "@/types";
+import { getAbilityVideo } from "@/data/ability-videos";
 
 interface AgentModalProps {
   agent: Agent;
@@ -138,30 +139,56 @@ export default function AgentModal({ agent, onClose }: AgentModalProps) {
                   className="modal-tab-content"
                 >
                   <div className="abilities-grid">
-                    {agent.abilities.map((ability) => (
-                      <div key={ability.slot} className="ability-card">
-                        <div className="ability-card__header">
-                          {ability.displayIcon && (
-                            <img
-                              src={ability.displayIcon}
-                              alt={ability.displayName}
-                              className="ability-card__icon"
-                            />
-                          )}
-                          <div>
-                            <span className="ability-card__slot">
-                              {ability.slot.toUpperCase()}
-                            </span>
-                            <h4 className="ability-card__name">
-                              {ability.displayName}
-                            </h4>
+                    {agent.abilities.map((ability) => {
+                      const videoUrl = getAbilityVideo(
+                        agent.displayName,
+                        ability.slot
+                      );
+                      return (
+                        <div key={ability.slot} className="ability-card">
+                          <div className="ability-card__header">
+                            {ability.displayIcon && (
+                              <img
+                                src={ability.displayIcon}
+                                alt={ability.displayName}
+                                className="ability-card__icon"
+                              />
+                            )}
+                            <div>
+                              <span className="ability-card__slot">
+                                {ability.slot.toUpperCase()}
+                              </span>
+                              <h4 className="ability-card__name">
+                                {ability.displayName}
+                              </h4>
+                            </div>
                           </div>
+                          <p className="ability-card__desc">
+                            {ability.description}
+                          </p>
+
+                          {/* Video preview section */}
+                          {videoUrl ? (
+                            <div className="ability-card__video">
+                              <div className="ability-card__video-label">
+                                ▶ FIELD FOOTAGE
+                              </div>
+                              <iframe
+                                src={videoUrl}
+                                title={`${ability.displayName} preview`}
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                                className="ability-card__iframe"
+                              />
+                            </div>
+                          ) : (
+                            <div className="ability-card__no-video">
+                              <span>// NO FOOTAGE AVAILABLE</span>
+                            </div>
+                          )}
                         </div>
-                        <p className="ability-card__desc">
-                          {ability.description}
-                        </p>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 </motion.div>
               )}
