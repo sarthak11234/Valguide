@@ -29,6 +29,7 @@ export const mapsData: MapInfo[] = [
     lineups: [
       { title: 'A Short Recon Dart', side: 'attack', agent: 'Sova', description: 'From A Short entrance, aim above the lamp on the wall and fire a 1-bounce Recon Bolt to scan the entire A site and Heaven.' },
       { title: 'B Hookah Poison Cloud', side: 'defense', agent: 'Viper', description: 'Place Poison Cloud at B Hookah entrance to delay pushes. Activate when you hear footsteps for maximum decay damage.' },
+      { title: 'B Site Tripwire Setup', side: 'defense', agent: 'Cypher', description: 'Place Trapwire across B Window at ankle height. Pair with a Cyber Cage at the exit to catch and blind any attacker pushing through Hookah.' },
     ],
   },
   {
@@ -44,6 +45,7 @@ export const mapsData: MapInfo[] = [
       { title: 'C Long Toxic Screen', side: 'attack', agent: 'Viper', description: 'Launch Toxic Screen from C Long spawn to cut off Defender rotations between C site and Mid Window.' },
       { title: 'B Site Retake Flash', side: 'defense', agent: 'Skye', description: 'From B door, send Guiding Light curving around the corner to flash anyone planting on B site before peeking.' },
       { title: 'A Site Owl Drone Clear', side: 'attack', agent: 'Sova', description: 'Deploy Owl Drone through A Long entrance to scout Heaven and site before committing to the push.' },
+      { title: 'C Site Nanoswarm Trap', side: 'defense', agent: 'Killjoy', description: 'Hide two Nanoswarms under the C site default plant spot. Wait for the plant sound cue, then activate both for near-certain kill on the planter.' },
     ],
   },
   {
@@ -58,6 +60,7 @@ export const mapsData: MapInfo[] = [
     lineups: [
       { title: 'Mid Vent Recon Bolt', side: 'attack', agent: 'Sova', description: 'From A Lobby, bounce a Recon Bolt off the wall into Mid Vent to reveal any defenders holding Mid or rotating through vents.' },
       { title: 'B Site Incendiary', side: 'defense', agent: 'Brimstone', description: 'Drop Incendiary on B Main choke from the safety of B site to delay and damage attackers pushing through the narrow corridor.' },
+      { title: 'A Ramps Fast Lane Rush', side: 'attack', agent: 'Neon', description: 'Fire Fast Lane walls up A Ramps to block the rafters sightline, then slide into A site for a lightning-fast entry before defenders can react.' },
     ],
   },
   {
@@ -72,6 +75,7 @@ export const mapsData: MapInfo[] = [
     lineups: [
       { title: 'B Main Shock Bolt', side: 'attack', agent: 'Sova', description: 'From B Main, fire a 2-bounce Shock Bolt that lands behind the default plant position, clearing defenders hiding in the back of site.' },
       { title: 'A Site Barrier Orb', side: 'defense', agent: 'Sage', description: 'Wall off A Main entrance at round start to force attackers through the narrow A Short route instead.' },
+      { title: 'Mid Catwalk Wingman Plant', side: 'attack', agent: 'Gekko', description: 'From Mid Catwalk, send Wingman toward A site with the spike to plant while your team creates a distraction on B. High-IQ play that splits defender attention.' },
     ],
   },
   {
@@ -86,6 +90,7 @@ export const mapsData: MapInfo[] = [
     lineups: [
       { title: 'B Orange Container Smoke', side: 'attack', agent: 'Brimstone', description: 'Smoke the top of Orange Container on B site to block defenders from sniping attackers crossing into Yellow.' },
       { title: 'A Nest Recon Bolt', side: 'attack', agent: 'Sova', description: 'Shoot a Recon Bolt from A Belt to scan A Nest (the elevated position) and A Site simultaneously.' },
+      { title: 'B Site Prowler Clear', side: 'attack', agent: 'Fade', description: 'Send a Prowler through B Orange toward Kitchen to chase out any defender holding an off-angle. Follow up with Haunt for full B site intel.' },
     ],
   },
   {
@@ -100,6 +105,7 @@ export const mapsData: MapInfo[] = [
     lineups: [
       { title: 'A Hall Viper Wall', side: 'attack', agent: 'Viper', description: 'Place Toxic Screen from A Main that stretches across A Pyramids to cut off Cave defenders and isolate the site.' },
       { title: 'Mid Cannon Recon', side: 'attack', agent: 'Sova', description: 'Recon Bolt from Mid Pillar area reveals B site and B Tunnel for a fast mid-to-B rotation play.' },
+      { title: 'B Elbow High Tide', side: 'attack', agent: 'Harbor', description: 'Guide High Tide from B Elbow across the entire B site to block both Pillar and back-site sightlines, creating a safe entry path for duelists.' },
     ],
   },
   {
@@ -114,6 +120,7 @@ export const mapsData: MapInfo[] = [
     lineups: [
       { title: 'B Tree Concuss', side: 'attack', agent: 'Breach', description: 'Fault Line from B Main through the wall to concuss defenders holding B Tree and Canteen, creating space for entry.' },
       { title: 'A Rope Control Dart', side: 'attack', agent: 'Sova', description: 'Recon Bolt from A Hall bounced into A Rope to scan defenders holding the drop-down position and A Site.' },
+      { title: 'B Arcade Sonic Sensor', side: 'defense', agent: 'Deadlock', description: 'Place Sonic Sensor at B Arcade entrance. Any attacker pushing through gets concussed, giving your team time to rotate and retake map control.' },
     ],
   },
   {
@@ -128,6 +135,7 @@ export const mapsData: MapInfo[] = [
     lineups: [
       { title: 'C Mound Smoke', side: 'attack', agent: 'Omen', description: 'Dark Cover on C Mound to block the defender watching from the elevated position so your team can push C Main freely.' },
       { title: 'A Root Door Break', side: 'attack', agent: 'Raze', description: 'Blast Pack the destructible wall at A Root for a surprise entry angle that bypasses the A Main choke.' },
+      { title: 'B Upper Haunt', side: 'attack', agent: 'Fade', description: 'Throw Haunt from B Upper to reveal all of B Main and B site. Follow terror trails with a Prowler for easy entry kills.' },
     ],
   },
   {
@@ -142,6 +150,7 @@ export const mapsData: MapInfo[] = [
     lineups: [
       { title: 'Mid Market Control', side: 'attack', agent: 'Omen', description: 'Smoke Mid Market from spawn to safely take mid control and open up rotations to either site.' },
       { title: 'B Site Retake Molly', side: 'defense', agent: 'Brimstone', description: 'Incendiary the default B plant spot from B Main during a retake to force the planter off the spike.' },
+      { title: 'A Main Dizzy Flash', side: 'attack', agent: 'Gekko', description: 'Send Dizzy soaring over A Main to blind defenders holding site and Elbow. Reclaim Dizzy after the push for a second use later in the round.' },
     ],
   },
   {
@@ -156,6 +165,7 @@ export const mapsData: MapInfo[] = [
     lineups: [
       { title: 'A Site Edge Push', side: 'attack', agent: 'Jett', description: 'Use Updraft and Tailwind to cross the gap at A, bypassing the main choke entirely. High risk, high reward entry.' },
       { title: 'B Bridge Gravity Well', side: 'defense', agent: 'Astra', description: 'Place Gravity Well at the B Bridge to pull attackers off the edge. Arguably the most tilting play in all of Valorant.' },
+      { title: 'A Ramp GravNet Trap', side: 'defense', agent: 'Deadlock', description: 'Lob a GravNet grenade at A Ramp when attackers push. Caught enemies are forced to crouch near the map edge — one well-timed push sends them into the abyss.' },
     ],
   },
 ];
