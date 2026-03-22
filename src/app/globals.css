@@ -683,9 +683,9 @@ body {
    ======================================== */
 .maps-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
   gap: 2rem;
-  max-width: 1200px;
+  max-width: 1600px;
   margin: 0 auto;
   padding: 0 1rem;
 }
@@ -849,4 +849,16 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #ff6673;
+}
+
+/* ========================================
+   COMMAND CENTER ANIMATIONS
+   ======================================== */
+@keyframes ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-ticker-scroll {
+  animation: ticker-scroll 30s linear infinite;
 }

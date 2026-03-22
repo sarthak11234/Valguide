@@ -1,65 +1,88 @@
-import Image from "next/image";
+"use client";
+
+import Link from "next/link";
+import { motion } from "framer-motion";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className="min-h-screen bg-[#0F1923] text-[#ECE8E1] font-sans relative overflow-hidden flex flex-col items-center justify-center p-8">
+      
+      {/* Halftone Background Pattern Effect */}
+      <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle,#39FF14_2px,transparent_2px)] bg-[size:20px_20px] pointer-events-none" />
+
+      {/* Main Container */}
+      <div className="max-w-4xl w-full border-4 border-black relative bg-[#ECE8E1] p-12 text-black shadow-[12px_12px_0px_#FF4655]">
+        
+        {/* Decorative corner accents */}
+        <div className="absolute -top-4 -left-4 w-8 h-8 bg-[#00E5FF] border-4 border-black" />
+        <div className="absolute -bottom-4 -right-4 w-8 h-8 bg-[#39FF14] border-4 border-black" />
+
+        <div className="text-center relative z-10">
+          <motion.h1 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-6xl md:text-8xl font-black uppercase tracking-tighter mb-4"
+          >
+            VALOGUIDE
+          </motion.h1>
+          <p className="text-xl md:text-2xl font-bold uppercase tracking-widest text-[#FF4655] mb-12">
+            Valorant Recruit Protocol
           </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+            
+            <Link href="/agents" className="group">
+              <div className="border-4 border-black bg-white p-6 relative transition-transform group-hover:-translate-y-2 shadow-[8px_8px_0px_#0F1923] group-hover:shadow-[12px_12px_0px_#0F1923]">
+                <h2 className="text-2xl font-black uppercase mb-2">Agent Archive</h2>
+                <p className="font-medium text-gray-600">Explore the roster and abilities.</p>
+                <div className="absolute bottom-0 right-0 w-8 h-8 border-l-4 border-t-4 border-black bg-[#FF4655]" />
+              </div>
+            </Link>
+
+            <Link href="/lore" className="group">
+              <div className="border-4 border-black bg-white p-6 relative transition-transform group-hover:-translate-y-2 shadow-[8px_8px_0px_#0F1923] group-hover:shadow-[12px_12px_0px_#0F1923]">
+                <h2 className="text-2xl font-black uppercase mb-2">Lore Timeline</h2>
+                <p className="font-medium text-gray-600">First Light and the Mirror World.</p>
+                <div className="absolute bottom-0 right-0 w-8 h-8 border-l-4 border-t-4 border-black bg-[#00E5FF]" />
+              </div>
+            </Link>
+
+            <Link href="/sage" className="group">
+              <div className="border-4 border-black bg-white p-6 relative transition-transform group-hover:-translate-y-2 shadow-[8px_8px_0px_#0F1923] group-hover:shadow-[12px_12px_0px_#0F1923]">
+                <h2 className="text-2xl font-black uppercase mb-2">SAGE AI</h2>
+                <p className="font-medium text-gray-600">Ask the chatbot for guidance.</p>
+                <div className="absolute bottom-0 right-0 w-8 h-8 border-l-4 border-t-4 border-black bg-[#39FF14]" />
+              </div>
+            </Link>
+
+            <Link href="/toolkit" className="group">
+              <div className="border-4 border-black bg-white p-6 relative transition-transform group-hover:-translate-y-2 shadow-[8px_8px_0px_#0F1923] group-hover:shadow-[12px_12px_0px_#0F1923]">
+                <h2 className="text-2xl font-black uppercase mb-2">Tactical Toolkit</h2>
+                <p className="font-medium text-gray-600">Calculate eDPI and compare weapons.</p>
+                <div className="absolute bottom-0 right-0 w-8 h-8 border-l-4 border-t-4 border-black bg-[#FF4655]" />
+              </div>
+            </Link>
+
+            <Link href="/maps" className="group">
+              <div className="border-4 border-black bg-white p-6 relative transition-transform group-hover:-translate-y-2 shadow-[8px_8px_0px_#0F1923] group-hover:shadow-[12px_12px_0px_#0F1923]">
+                <h2 className="text-2xl font-black uppercase mb-2">Map Intel</h2>
+                <p className="font-medium text-gray-600">Topological data and site lineups.</p>
+                <div className="absolute top-0 left-0 w-6 h-6 border-r-4 border-b-4 border-black bg-[#00E5FF]" />
+              </div>
+            </Link>
+
+            <Link href="/esports" className="group">
+              <div className="border-4 border-black bg-white p-6 relative transition-transform group-hover:-translate-y-2 shadow-[8px_8px_0px_#0F1923] group-hover:shadow-[12px_12px_0px_#0F1923]">
+                <h2 className="text-2xl font-black uppercase mb-2">VCT & Esports</h2>
+                <p className="font-medium text-gray-600">Global circuits and pro players.</p>
+                <div className="absolute top-0 right-0 w-6 h-6 border-l-4 border-b-4 border-black bg-[#FF4655]" />
+                <div className="absolute bottom-0 left-0 w-6 h-6 border-r-4 border-t-4 border-black bg-[#39FF14]" />
+              </div>
+            </Link>
+
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </div>
     </div>
   );
 }

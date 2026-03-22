@@ -101,7 +101,7 @@ export default function TacticalToolkit() {
               <input
                 type="number"
                 id="dpi-input"
-                className="flex-1 bg-white px-4 py-4 text-2xl font-bold focus:outline-none"
+                className="flex-1 w-full min-w-0 bg-white px-4 py-4 text-2xl font-bold focus:outline-none"
                 placeholder="e.g. 800"
                 value={dpi}
                 onChange={(e) => setDpi(Number(e.target.value))}
@@ -117,7 +117,7 @@ export default function TacticalToolkit() {
                 type="number"
                 id="sens-input"
                 step="0.01"
-                className="flex-1 bg-white px-4 py-4 text-2xl font-bold focus:outline-none"
+                className="flex-1 w-full min-w-0 bg-white px-4 py-4 text-2xl font-bold focus:outline-none"
                 placeholder="e.g. 0.4"
                 value={sens}
                 onChange={(e) => setSens(Number(e.target.value))}

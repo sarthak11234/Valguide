@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Agent } from "@/types";
+import { getAgentLore } from "@/data/agent-lore";
 
 interface AgentModalProps {
   agent: Agent;
@@ -111,6 +112,13 @@ export default function AgentModal({ agent, onClose }: AgentModalProps) {
                   <div className="lore-section">
                     <h3 className="lore-section__title">DOSSIER</h3>
                     <p className="lore-section__text">{agent.description}</p>
+                  </div>
+                  
+                  <div className="lore-section">
+                    <h3 className="lore-section__title">BACKGROUND INTEL</h3>
+                    <p className="lore-section__text text-gray-400 font-medium italic leading-relaxed">
+                      {getAgentLore(agent.displayName)}
+                    </p>
                   </div>
                   {agent.characterTags && agent.characterTags.length > 0 && (
                     <div className="lore-section">
