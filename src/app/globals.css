@@ -18,8 +18,14 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-val-red: var(--val-red);
+  --color-val-cyan: var(--val-cyan);
+  --color-val-green: var(--val-green);
+  --color-val-navy: var(--val-navy);
+  --color-val-offwhite: var(--val-offwhite);
+  --color-val-black: var(--val-black);
+  --font-sans: var(--font-inter);
+  --font-tungsten: var(--font-tungsten);
 }
 
 * {
