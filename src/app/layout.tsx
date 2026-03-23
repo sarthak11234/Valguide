@@ -14,8 +14,30 @@ const tungstanFallback = Anton({
 });
 
 export const metadata: Metadata = {
-  title: "ValoGuide | Project VRP",
-  description: "Valorant Recruit Protocol - Tactical Guide",
+  title: {
+    default: "ValoGuide | Valorant Recruit Protocol",
+    template: "%s | ValoGuide",
+  },
+  description:
+    "The ultimate Valorant tactical guide — AI chatbot, agent archive, lore timeline, map intel, weapon stats, and esports coverage. Built with a comic-book aesthetic.",
+  keywords: [
+    "Valorant",
+    "ValoGuide",
+    "Valorant agents",
+    "Valorant maps",
+    "Valorant lore",
+    "eDPI calculator",
+    "Valorant weapons",
+    "VCT esports",
+    "SAGE chatbot",
+  ],
+  openGraph: {
+    title: "ValoGuide | Valorant Recruit Protocol",
+    description:
+      "Comic-styled tactical web app for Valorant — AI chatbot, agent dossiers, lore, maps, and esports.",
+    type: "website",
+    siteName: "ValoGuide",
+  },
 };
 
 import Navigation from "@/components/Navigation";

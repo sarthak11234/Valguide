@@ -4,8 +4,13 @@ import WeaponComparison from '@/components/WeaponComparison';
 import JaggedDivider from '@/components/JaggedDivider';
 
 export const metadata: Metadata = {
-  title: 'Tactical Toolkit | ValoGuide',
-  description: 'Calculate your eDPI and compare Valorant weapon stats.',
+  title: 'Tactical Toolkit',
+  description: 'Calculate your eDPI sensitivity and compare Valorant weapon stats — fire rate, damage, cost, and wall penetration for every weapon in the game.',
+  openGraph: {
+    title: 'Tactical Toolkit | ValoGuide',
+    description: 'eDPI calculator and weapon stat comparison for Valorant players.',
+    type: 'website',
+  },
 };
 
 export default function ToolkitPage() {
