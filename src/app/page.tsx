@@ -3,86 +3,181 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 
+const navCards = [
+  {
+    href: "/agents",
+    title: "Agent Archive",
+    desc: "Classified dossiers on every operative",
+    accent: "#FF4655",
+    icon: "⬡",
+  },
+  {
+    href: "/lore",
+    title: "Lore Registry",
+    desc: "First Light & the Mirror World",
+    accent: "#00E5FF",
+    icon: "◈",
+  },
+  {
+    href: "/sage",
+    title: "SAGE Terminal",
+    desc: "AI tactical advisor powered by Gemini",
+    accent: "#39FF14",
+    icon: "◉",
+  },
+  {
+    href: "/toolkit",
+    title: "Tactical Toolkit",
+    desc: "eDPI calculator & weapon comparison",
+    accent: "#FF4655",
+    icon: "⬢",
+  },
+  {
+    href: "/maps",
+    title: "Map Intel",
+    desc: "Site layouts, lineups & recon data",
+    accent: "#00E5FF",
+    icon: "◇",
+  },
+  {
+    href: "/esports",
+    title: "VCT & Esports",
+    desc: "Champions, rosters & global circuits",
+    accent: "#39FF14",
+    icon: "◆",
+  },
+];
+
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#0F1923] text-[#ECE8E1] font-sans relative overflow-hidden flex flex-col items-center justify-center p-8">
-      
-      {/* Halftone Background Pattern Effect */}
-      <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle,#39FF14_2px,transparent_2px)] bg-[size:20px_20px] pointer-events-none" />
+    <div className="hero-page">
+      {/* ═══ HERO SECTION ═══ */}
+      <section className="hero">
+        {/* Animated background layers */}
+        <div className="hero__bg-grid" />
+        <div className="hero__scanline" />
+        <div className="hero__vignette" />
 
-      {/* Main Container */}
-      <div className="max-w-4xl w-full border-4 border-black relative bg-[#ECE8E1] p-12 text-black shadow-[12px_12px_0px_#FF4655]">
-        
-        {/* Decorative corner accents */}
-        <div className="absolute -top-4 -left-4 w-8 h-8 bg-[#00E5FF] border-4 border-black" />
-        <div className="absolute -bottom-4 -right-4 w-8 h-8 bg-[#39FF14] border-4 border-black" />
-
-        <div className="text-center relative z-10">
-          <motion.h1 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-6xl md:text-8xl font-black uppercase tracking-tighter mb-4"
-          >
-            VALOGUIDE
-          </motion.h1>
-          <p className="text-xl md:text-2xl font-bold uppercase tracking-widest text-[#FF4655] mb-12">
-            Valorant Recruit Protocol
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
-            
-            <Link href="/agents" className="group">
-              <div className="border-4 border-black bg-white p-6 relative transition-transform group-hover:-translate-y-2 shadow-[8px_8px_0px_#0F1923] group-hover:shadow-[12px_12px_0px_#0F1923]">
-                <h2 className="text-2xl font-black uppercase mb-2">Agent Archive</h2>
-                <p className="font-medium text-gray-600">Explore the roster and abilities.</p>
-                <div className="absolute bottom-0 right-0 w-8 h-8 border-l-4 border-t-4 border-black bg-[#FF4655]" />
-              </div>
-            </Link>
-
-            <Link href="/lore" className="group">
-              <div className="border-4 border-black bg-white p-6 relative transition-transform group-hover:-translate-y-2 shadow-[8px_8px_0px_#0F1923] group-hover:shadow-[12px_12px_0px_#0F1923]">
-                <h2 className="text-2xl font-black uppercase mb-2">Lore Timeline</h2>
-                <p className="font-medium text-gray-600">First Light and the Mirror World.</p>
-                <div className="absolute bottom-0 right-0 w-8 h-8 border-l-4 border-t-4 border-black bg-[#00E5FF]" />
-              </div>
-            </Link>
-
-            <Link href="/sage" className="group">
-              <div className="border-4 border-black bg-white p-6 relative transition-transform group-hover:-translate-y-2 shadow-[8px_8px_0px_#0F1923] group-hover:shadow-[12px_12px_0px_#0F1923]">
-                <h2 className="text-2xl font-black uppercase mb-2">SAGE AI</h2>
-                <p className="font-medium text-gray-600">Ask the chatbot for guidance.</p>
-                <div className="absolute bottom-0 right-0 w-8 h-8 border-l-4 border-t-4 border-black bg-[#39FF14]" />
-              </div>
-            </Link>
-
-            <Link href="/toolkit" className="group">
-              <div className="border-4 border-black bg-white p-6 relative transition-transform group-hover:-translate-y-2 shadow-[8px_8px_0px_#0F1923] group-hover:shadow-[12px_12px_0px_#0F1923]">
-                <h2 className="text-2xl font-black uppercase mb-2">Tactical Toolkit</h2>
-                <p className="font-medium text-gray-600">Calculate eDPI and compare weapons.</p>
-                <div className="absolute bottom-0 right-0 w-8 h-8 border-l-4 border-t-4 border-black bg-[#FF4655]" />
-              </div>
-            </Link>
-
-            <Link href="/maps" className="group">
-              <div className="border-4 border-black bg-white p-6 relative transition-transform group-hover:-translate-y-2 shadow-[8px_8px_0px_#0F1923] group-hover:shadow-[12px_12px_0px_#0F1923]">
-                <h2 className="text-2xl font-black uppercase mb-2">Map Intel</h2>
-                <p className="font-medium text-gray-600">Topological data and site lineups.</p>
-                <div className="absolute top-0 left-0 w-6 h-6 border-r-4 border-b-4 border-black bg-[#00E5FF]" />
-              </div>
-            </Link>
-
-            <Link href="/esports" className="group">
-              <div className="border-4 border-black bg-white p-6 relative transition-transform group-hover:-translate-y-2 shadow-[8px_8px_0px_#0F1923] group-hover:shadow-[12px_12px_0px_#0F1923]">
-                <h2 className="text-2xl font-black uppercase mb-2">VCT & Esports</h2>
-                <p className="font-medium text-gray-600">Global circuits and pro players.</p>
-                <div className="absolute top-0 right-0 w-6 h-6 border-l-4 border-b-4 border-black bg-[#FF4655]" />
-                <div className="absolute bottom-0 left-0 w-6 h-6 border-r-4 border-t-4 border-black bg-[#39FF14]" />
-              </div>
-            </Link>
-
-          </div>
+        {/* Floating particles / speed lines */}
+        <div className="hero__speed-lines">
+          {Array.from({ length: 8 }).map((_, i) => (
+            <div
+              key={i}
+              className="hero__line"
+              style={{
+                top: `${12 + i * 11}%`,
+                animationDelay: `${i * 0.3}s`,
+                opacity: 0.15 + Math.random() * 0.15,
+              }}
+            />
+          ))}
         </div>
-      </div>
+
+        {/* Main hero content */}
+        <div className="hero__content">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, type: "spring", stiffness: 80 }}
+            className="hero__title-group"
+          >
+            {/* Protocol badge */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+              className="hero__badge"
+            >
+              <span className="hero__badge-dot" />
+              VALORANT RECRUIT PROTOCOL
+            </motion.div>
+
+            {/* Main title with glitch */}
+            <h1 className="hero__title" data-text="VALOGUIDE">
+              VALOGUIDE
+            </h1>
+
+            {/* Subtitle */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
+              className="hero__subtitle"
+            >
+              YOUR TACTICAL COMPANION FOR EVERYTHING VALORANT
+            </motion.p>
+
+            {/* CTA Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.9, duration: 0.5 }}
+              className="hero__ctas"
+            >
+              <Link href="/agents" className="hero__cta hero__cta--primary">
+                <span className="hero__cta-text">ENTER ARCHIVE</span>
+                <span className="hero__cta-arrow">→</span>
+              </Link>
+              <Link href="/sage" className="hero__cta hero__cta--secondary">
+                <span className="hero__cta-text">ASK SAGE</span>
+                <span className="hero__cta-arrow">→</span>
+              </Link>
+            </motion.div>
+          </motion.div>
+
+          {/* Scrolldown indicator */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.5 }}
+            className="hero__scroll-hint"
+          >
+            <span>EXPLORE</span>
+            <div className="hero__scroll-arrow" />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ═══ NAVIGATION CARDS ═══ */}
+      <section className="hero-nav">
+        <div className="hero-nav__header">
+          <div className="hero-nav__line" />
+          <h2 className="hero-nav__title">COMMAND CENTER</h2>
+          <div className="hero-nav__line" />
+        </div>
+
+        <div className="hero-nav__grid">
+          {navCards.map((card, i) => (
+            <motion.div
+              key={card.href}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08, duration: 0.5, type: "spring", stiffness: 120 }}
+            >
+              <Link href={card.href} className="hero-card">
+                <div
+                  className="hero-card__accent"
+                  style={{ backgroundColor: card.accent }}
+                />
+                <div className="hero-card__icon" style={{ color: card.accent }}>
+                  {card.icon}
+                </div>
+                <div className="hero-card__body">
+                  <h3 className="hero-card__title">{card.title}</h3>
+                  <p className="hero-card__desc">{card.desc}</p>
+                </div>
+                <div
+                  className="hero-card__arrow"
+                  style={{ color: card.accent }}
+                >
+                  →
+                </div>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

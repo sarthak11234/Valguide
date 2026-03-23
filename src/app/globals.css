@@ -978,18 +978,47 @@ body {
 /* ========================================
    RESPONSIVE
    ======================================== */
+
+/* -- Tablet and below (768px) -- */
 @media (max-width: 768px) {
   .page-header__badge h1 {
     font-size: 1.3rem;
   }
 
+  .page-header__sub {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+  }
+
+  /* Role filter buttons — center-wrap cleanly */
+  .role-filters {
+    gap: 0.4rem;
+    justify-content: center;
+  }
+
+  .role-filter {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.65rem;
+  }
+
+  /* Agent grid — 2 columns on tablet */
   .agents-grid {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
+    padding: 0 0.5rem;
   }
 
   .agent-card__portrait {
     height: 200px;
+  }
+
+  /* Agent card — scale down hover effect */
+  .agent-card:hover {
+    box-shadow: 6px 6px 0px var(--agent-accent, var(--val-cyan));
+  }
+
+  .agent-card__neon-shadow {
+    transform: translate(6px, 6px);
   }
 
   /* Timeline becomes single-column on mobile */
@@ -1014,6 +1043,7 @@ body {
     right: auto;
   }
 
+  /* Modal — fit mobile screens */
   .modal-header {
     height: 200px;
   }
@@ -1030,8 +1060,124 @@ body {
     grid-template-columns: 1fr;
   }
 
+  /* Maps grid — single column */
   .maps-grid {
     grid-template-columns: 1fr;
+    padding: 0 0.5rem;
+  }
+
+  /* Map card — more breathing room */
+  .map-card__header {
+    padding: 0.8rem 1rem;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+
+  .map-card__name {
+    font-size: 1.2rem;
+  }
+
+  .map-card__desc {
+    padding: 0.8rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .map-card__lore {
+    padding: 0.8rem 1rem;
+  }
+
+  .map-card__lineups {
+    padding: 0.8rem 1rem;
+  }
+
+  /* Pages — consistent padding */
+  .agents-page,
+  .lore-page,
+  .maps-page {
+    padding: 1.5rem 1rem 3rem;
+  }
+
+  /* Ability video iframe — smaller on mobile */
+  .ability-card__iframe {
+    height: 160px;
+  }
+
+  .ability-card__thumb-inner {
+    height: 160px;
+  }
+}
+
+/* -- Small phones (480px and below) -- */
+@media (max-width: 480px) {
+  .page-header__badge {
+    padding: 0.4rem 1.5rem;
+  }
+
+  .page-header__badge h1 {
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+  }
+
+  /* Role filters — tight layout */
+  .role-filter {
+    padding: 0.35rem 0.6rem;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+  }
+
+  /* Agent grid — single column on tiny screens */
+  .agents-grid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .agent-card__portrait {
+    height: 240px;
+  }
+
+  /* Timeline — tighter padding */
+  .timeline-event--left,
+  .timeline-event--right {
+    padding-left: 2.5rem;
+  }
+
+  .timeline-event__card {
+    padding: 1rem;
+  }
+
+  .timeline-event__title {
+    font-size: 1rem;
+  }
+
+  .timeline-event__desc {
+    font-size: 0.8rem;
+  }
+
+  /* Map card coordinate text — full width */
+  .map-card__coord {
+    font-size: 0.6rem;
+  }
+
+  /* Modal — full width on mobile */
+  .modal-content {
+    max-height: 95vh;
+  }
+
+  .modal-header__name {
+    font-size: 1.2rem;
+  }
+
+  .modal-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+
+  .modal-tab {
+    font-size: 0.65rem;
+    padding: 0.6rem 0.5rem;
+    white-space: nowrap;
   }
 }
 
