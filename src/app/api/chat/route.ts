@@ -6,10 +6,27 @@ const SAGE_PROMPT = `You are "SAGE", a highly knowledgeable AI recruitment bot f
 export async function POST(req: Request) {
   try {
     const { messages } = await req.json();
+    
+    // Extract experience level from the most recent user message
+    const lastMessage = messages[messages.length - 1];
+    const experienceLevel = lastMessage?.experienceLevel || "Beginner";
+    
+    let levelContext = "";
+    if (experienceLevel === "Beginner") {
+      levelContext = "The recruit has NO prior FPS experience. Explain basic gaming concepts (crosshair placement, recoil, economy) simply and clearly.";
+    } else if (experienceLevel === "Intermediate") {
+      levelContext = "The recruit has SOME FPS experience. Focus on intermediate Valorant-specific tactics, ability usage, and team coordination.";
+    } else if (experienceLevel === "Advanced") {
+      levelContext = "The recruit is an ADVANCED FPS veteran. Skip the basics. Give them high-level macro strategy, precise lineups, and deep meta analysis.";
+    }
+    
+    const finalSystemPrompt = experienceLevel 
+      ? `${SAGE_PROMPT}\n\nCRITICAL CONTEXT: ${levelContext}`
+      : SAGE_PROMPT;
 
     const result = await streamText({
       model: google('models/gemini-1.5-pro-latest'),
-      system: SAGE_PROMPT,
+      system: finalSystemPrompt,
       messages,
     });
 

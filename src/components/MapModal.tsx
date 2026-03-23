@@ -6,7 +6,7 @@ interface MapModalProps {
   onClose: () => void;
 }
 
-type TabType = "INTEL" | "LINEUPS" | "LAYOUT" | "GALLERY";
+type TabType = "INTEL" | "LINEUPS" | "LAYOUT" | "GALLERY" | "WALKTHROUGH";
 
 export default function MapModal({ mapData, onClose }: MapModalProps) {
   const [activeTab, setActiveTab] = useState<TabType>("INTEL");
@@ -57,7 +57,7 @@ export default function MapModal({ mapData, onClose }: MapModalProps) {
           </div>
 
           <div className="flex flex-row md:flex-col gap-2 overflow-x-auto pb-4 md:pb-0">
-            {(["INTEL", "LINEUPS", "LAYOUT", "GALLERY"] as TabType[]).map((tab) => (
+            {(["INTEL", "LINEUPS", "LAYOUT", "GALLERY", "WALKTHROUGH"] as TabType[]).map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
@@ -223,6 +223,37 @@ export default function MapModal({ mapData, onClose }: MapModalProps) {
                     <div className="border-4 border-black relative group overflow-hidden">
                       <div className="absolute top-2 left-2 bg-[#00E5FF] text-black text-xs font-black uppercase px-2 py-1 z-10">Stylized Recon</div>
                       <img src={mapData.stylizedBackgroundImage} alt="Stylized" className="w-full h-auto transform transition-transform duration-700 group-hover:scale-110" />
+                    </div>
+                  )}
+                </motion.div>
+              )}
+
+              {/* WALKTHROUGH TAB */}
+              {activeTab === "WALKTHROUGH" && (
+                <motion.div
+                  key="walkthrough"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  className="space-y-6 h-full flex flex-col"
+                >
+                  <h3 className="text-2xl font-black uppercase tracking-wider text-gray-400">
+                    Video Walkthrough
+                  </h3>
+                  
+                  {mapData.videoUrl ? (
+                    <div className="border-4 border-black relative w-full flex-grow min-h-[300px] bg-black shadow-[8px_8px_0px_#00E5FF]">
+                      <iframe
+                        src={mapData.videoUrl}
+                        title={`${mapData.name} Walkthrough`}
+                        className="absolute inset-0 w-full h-full"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    </div>
+                  ) : (
+                    <div className="text-center text-gray-500 font-bold p-12 border-4 border-dashed border-gray-700 w-full">
+                      NO VIDEO RECORD AVAILABLE
                     </div>
                   )}
                 </motion.div>
