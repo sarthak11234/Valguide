@@ -6,10 +6,12 @@ interface MapModalProps {
   onClose: () => void;
 }
 
-type TabType = "INTEL" | "LAYOUT" | "GALLERY";
+type TabType = "INTEL" | "LINEUPS" | "LAYOUT" | "GALLERY";
 
 export default function MapModal({ mapData, onClose }: MapModalProps) {
   const [activeTab, setActiveTab] = useState<TabType>("INTEL");
+
+  const lineups = mapData.lineups || [];
 
   return (
     <motion.div
@@ -27,7 +29,7 @@ export default function MapModal({ mapData, onClose }: MapModalProps) {
         className="modal-content relative flex flex-col md:flex-row overflow-hidden"
         style={{
           border: `4px solid ${mapData.accentColor || "#FF4655"}`,
-          ["--agent-color" as string]: mapData.accentColor || "#FF4655", // Reusing variables for consistency
+          ["--agent-color" as string]: mapData.accentColor || "#FF4655",
         }}
       >
         {/* Close Button */}
@@ -55,7 +57,7 @@ export default function MapModal({ mapData, onClose }: MapModalProps) {
           </div>
 
           <div className="flex flex-row md:flex-col gap-2 overflow-x-auto pb-4 md:pb-0">
-            {(["INTEL", "LAYOUT", "GALLERY"] as TabType[]).map((tab) => (
+            {(["INTEL", "LINEUPS", "LAYOUT", "GALLERY"] as TabType[]).map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
@@ -69,6 +71,11 @@ export default function MapModal({ mapData, onClose }: MapModalProps) {
                 }}
               >
                 {tab}
+                {tab === "LINEUPS" && lineups.length > 0 && (
+                  <span className="ml-2 text-xs bg-black text-white px-1.5 py-0.5 inline-block">
+                    {lineups.length}
+                  </span>
+                )}
               </button>
             ))}
           </div>
@@ -102,12 +109,62 @@ export default function MapModal({ mapData, onClose }: MapModalProps) {
                     </p>
                   </div>
                   
-                  <div className="border-l-8 pl-6 border-white bg-white/5 p-4">
-                    <h3 className="text-xl font-black uppercase mb-2">Classified Lore</h3>
-                    <p className="font-medium text-gray-300">
+                  <div className="border-l-8 pl-6 border-[#00E5FF] bg-[#00E5FF]/5 p-4">
+                    <h3 className="text-xl font-black uppercase mb-2 text-[#00E5FF]">Classified Lore</h3>
+                    <p className="font-medium text-gray-300 leading-relaxed">
                       {mapData.loreSummary}
                     </p>
                   </div>
+                </motion.div>
+              )}
+
+              {/* LINEUPS TAB */}
+              {activeTab === "LINEUPS" && (
+                <motion.div
+                  key="lineups"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  className="space-y-6"
+                >
+                  <h3 className="text-2xl font-black uppercase tracking-wider text-gray-400">
+                    Tactical Lineups
+                  </h3>
+
+                  {lineups.length === 0 ? (
+                    <div className="text-center text-gray-500 font-bold p-12 border-4 border-dashed border-gray-700 w-full">
+                      NO LINEUP DATA AVAILABLE
+                    </div>
+                  ) : (
+                    <div className="map-modal__lineups-grid">
+                      {lineups.map((lineup: any, i: number) => (
+                        <motion.div
+                          key={i}
+                          className="map-modal__lineup-item"
+                          initial={{ opacity: 0, y: 15 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: i * 0.08 }}
+                        >
+                          <div className="flex items-center gap-3 mb-2">
+                            <span
+                              className={`text-xs font-black uppercase tracking-widest px-3 py-1 border-2 ${
+                                lineup.side === "attack"
+                                  ? "text-[#FF4655] border-[#FF4655] bg-[#FF4655]/10"
+                                  : "text-[#00E5FF] border-[#00E5FF] bg-[#00E5FF]/10"
+                              }`}
+                            >
+                              {lineup.side?.toUpperCase()}
+                            </span>
+                            <span className="text-sm font-black uppercase tracking-wider" style={{ color: mapData.accentColor }}>
+                              {lineup.agent}
+                            </span>
+                          </div>
+                          <h4 className="text-lg font-black uppercase mb-1">{lineup.title}</h4>
+                          <p className="text-sm text-gray-400 leading-relaxed">{lineup.description}</p>
+                        </motion.div>
+                      ))}
+                    </div>
+                  )}
                 </motion.div>
               )}
 
@@ -177,3 +234,4 @@ export default function MapModal({ mapData, onClose }: MapModalProps) {
     </motion.div>
   );
 }
+

@@ -158,11 +158,14 @@ body {
   border: 4px solid #000;
   background: var(--val-navy);
   overflow: hidden;
-  transition: box-shadow 0.2s ease;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  z-index: 1;
 }
 
 .agent-card:hover {
-  box-shadow: 8px 8px 0px var(--val-cyan);
+  box-shadow: 10px 10px 0px var(--agent-accent, var(--val-cyan)),
+              0 0 30px rgba(0, 229, 255, 0.15);
+  border-color: var(--agent-accent, var(--val-cyan));
 }
 
 .agent-card__issue {
@@ -225,6 +228,19 @@ body {
   z-index: 1;
 }
 
+/* Halftone dot overlay — graphic-novel print texture */
+.agent-card__portrait::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.35) 1px, transparent 1px);
+  background-size: 4px 4px;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0.5;
+  transition: opacity 0.5s ease;
+}
+
 /* Duotone color overlay — blends with the agent accent gradient */
 .agent-card__portrait::after {
   content: '';
@@ -242,10 +258,14 @@ body {
   pointer-events: none;
 }
 
-/* Hover: reveal full color portrait */
+/* Hover: reveal full color portrait, fade halftone */
 .agent-card:hover .agent-card__img {
   transform: scale(1.08);
   filter: contrast(1.2) saturate(1.1) grayscale(0) brightness(1);
+}
+
+.agent-card:hover .agent-card__portrait::before {
+  opacity: 0;
 }
 
 .agent-card:hover .agent-card__portrait::after {
@@ -271,7 +291,23 @@ body {
   inset: 0;
   pointer-events: none;
   box-shadow: inset 0 -40px 30px -20px rgba(0, 0, 0, 0.6);
-  z-index: 2;
+  z-index: 4;
+}
+
+/* Neon hard-edge shadow block behind card on hover */
+.agent-card__neon-shadow {
+  position: absolute;
+  inset: 0;
+  background: var(--agent-accent, var(--val-cyan));
+  z-index: -1;
+  transform: translate(10px, 10px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.agent-card:hover .agent-card__neon-shadow {
+  opacity: 1;
 }
 
 /* Card skeleton */
@@ -667,6 +703,12 @@ body {
   transform: translateX(-50%);
   z-index: 3;
   box-shadow: 0 0 12px currentColor;
+  animation: dot-glow 2s ease-in-out infinite;
+}
+
+@keyframes dot-glow {
+  0%, 100% { box-shadow: 0 0 8px currentColor, 0 0 2px currentColor; }
+  50% { box-shadow: 0 0 20px currentColor, 0 0 6px currentColor; }
 }
 
 .timeline-event__card {
@@ -676,6 +718,28 @@ body {
   box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.4);
   position: relative;
   max-width: 100%;
+  clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 0 100%);
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 6px 6px;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.timeline-event__card:hover {
+  box-shadow: 8px 8px 0px var(--event-accent, var(--val-red));
+  transform: translateY(-2px);
+}
+
+/* Angled cut corner accent triangle */
+.timeline-event__card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 24px 24px 0;
+  border-color: transparent var(--event-accent, var(--val-red)) transparent transparent;
 }
 
 .timeline-event__card::before {
@@ -1001,4 +1065,173 @@ body {
 
 .animate-ticker-scroll {
   animation: ticker-scroll 30s linear infinite;
+}
+
+/* ========================================
+   ABILITY VIDEO — CLICK-TO-PLAY THUMBNAIL
+   ======================================== */
+.ability-card__video-thumb {
+  margin-top: 0.8rem;
+  border: 3px solid var(--val-cyan);
+  background: #000;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.ability-card__video-thumb:hover {
+  border-color: var(--val-green);
+}
+
+.ability-card__thumb-inner {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.08) 0%, rgba(57, 255, 20, 0.05) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.ability-card__thumb-inner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(0, 229, 255, 0.08) 1px, transparent 1px);
+  background-size: 8px 8px;
+  pointer-events: none;
+}
+
+.ability-card__play-btn {
+  width: 64px;
+  height: 64px;
+  border: 4px solid var(--val-cyan);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  background: rgba(0, 0, 0, 0.6);
+  position: relative;
+  z-index: 2;
+}
+
+.ability-card__video-thumb:hover .ability-card__play-btn {
+  border-color: var(--val-green);
+  background: rgba(0, 229, 255, 0.2);
+  transform: scale(1.1);
+  box-shadow: 0 0 24px rgba(0, 229, 255, 0.4);
+}
+
+.ability-card__play-btn::after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 10px 0 10px 18px;
+  border-color: transparent transparent transparent var(--val-cyan);
+  margin-left: 4px;
+}
+
+.ability-card__video-thumb:hover .ability-card__play-btn::after {
+  border-color: transparent transparent transparent var(--val-green);
+}
+
+.ability-card__thumb-label {
+  font-size: 0.6rem;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  color: var(--val-cyan);
+  padding: 4px 10px;
+  background: rgba(0, 229, 255, 0.1);
+  border-bottom: 2px solid var(--val-cyan);
+}
+
+.ability-card__video-loading {
+  margin-top: 0.8rem;
+  border: 3px solid var(--val-cyan);
+  height: 232px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+}
+
+.ability-card__spinner {
+  width: 32px;
+  height: 32px;
+  border: 4px solid rgba(0, 229, 255, 0.2);
+  border-top-color: var(--val-cyan);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ========================================
+   MAP MODAL TABS
+   ======================================== */
+.map-modal__tabs {
+  display: flex;
+  border-bottom: 4px solid #000;
+}
+
+.map-modal__tab {
+  flex: 1;
+  padding: 0.7rem 1rem;
+  background: rgba(0, 0, 0, 0.4);
+  border: none;
+  border-right: 3px solid #000;
+  color: rgba(236, 232, 225, 0.5);
+  font-weight: 800;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+}
+
+.map-modal__tab:last-child {
+  border-right: none;
+}
+
+.map-modal__tab:hover {
+  color: var(--val-offwhite);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.map-modal__tab--active {
+  background: var(--val-green);
+  color: #000;
+}
+
+.map-modal__body {
+  padding: 1.2rem;
+  min-height: 200px;
+}
+
+.map-modal__lineups-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.8rem;
+}
+
+.map-modal__lineup-item {
+  background: rgba(0, 0, 0, 0.3);
+  border: 3px solid rgba(236, 232, 225, 0.1);
+  padding: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+.map-modal__lineup-item:hover {
+  border-color: var(--val-green);
+}
+
+.map-modal__lore-section {
+  border-left: 4px solid var(--val-cyan);
+  padding-left: 1rem;
+  margin-bottom: 1.2rem;
 }

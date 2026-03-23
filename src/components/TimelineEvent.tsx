@@ -14,10 +14,10 @@ export default function TimelineEvent({ event, index }: TimelineEventProps) {
   return (
     <motion.div
       className={`timeline-event ${isLeft ? "timeline-event--left" : "timeline-event--right"}`}
-      initial={{ opacity: 0, x: isLeft ? -60 : 60 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.6, delay: 0.1, type: "spring", stiffness: 100 }}
+      initial={{ opacity: 0, x: isLeft ? -80 : 80, scale: 0.9, rotate: isLeft ? -2 : 2 }}
+      whileInView={{ opacity: 1, x: 0, scale: 1, rotate: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.6, delay: 0.1, type: "spring", stiffness: 100, damping: 12 }}
     >
       {/* Connector dot */}
       <div
@@ -32,6 +32,14 @@ export default function TimelineEvent({ event, index }: TimelineEventProps) {
           ["--event-accent" as string]: event.accentColor,
         }}
       >
+        {/* Decorative chevron mark */}
+        <div
+          className="absolute top-3 right-8 text-3xl font-black leading-none select-none pointer-events-none"
+          style={{ color: event.accentColor, opacity: 0.1 }}
+        >
+          ❯❯
+        </div>
+
         <div className="timeline-event__year" style={{ color: event.accentColor }}>
           {event.year}
         </div>
@@ -49,3 +57,4 @@ export default function TimelineEvent({ event, index }: TimelineEventProps) {
     </motion.div>
   );
 }
+

@@ -6,9 +6,10 @@ import type { Agent } from "@/types";
 interface AgentCardProps {
   agent: Agent;
   onClick: () => void;
+  index?: number;
 }
 
-export default function AgentCard({ agent, onClick }: AgentCardProps) {
+export default function AgentCard({ agent, onClick, index = 0 }: AgentCardProps) {
   const gradientColor = agent.backgroundGradientColors?.[0]
     ? `#${agent.backgroundGradientColors[0].slice(0, 6)}`
     : "#1a1a2e";
@@ -17,9 +18,18 @@ export default function AgentCard({ agent, onClick }: AgentCardProps) {
     <motion.div
       className="agent-card"
       onClick={onClick}
+      initial={{ opacity: 0, y: 40, scale: 0.95 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{
+        delay: index * 0.06,
+        duration: 0.5,
+        type: "spring",
+        stiffness: 120,
+        damping: 14,
+      }}
       whileHover={{
-        y: -8,
-        x: -8,
+        y: -10,
+        x: -10,
         transition: { type: "spring", stiffness: 400, damping: 15 },
       }}
       style={{
@@ -67,8 +77,9 @@ export default function AgentCard({ agent, onClick }: AgentCardProps) {
         <h3>{agent.displayName.toUpperCase()}</h3>
       </div>
 
-      {/* Hover shadow layer */}
+      {/* Hover neon shadow layer */}
       <div className="agent-card__shadow" />
+      <div className="agent-card__neon-shadow" />
     </motion.div>
   );
 }

@@ -72,10 +72,11 @@ export default function AgentsPage() {
       {/* Agent Grid */}
       {!loading && (
         <div className="agents-grid">
-          {filteredAgents.map((agent) => (
+          {filteredAgents.map((agent, index) => (
             <AgentCard
               key={agent.uuid}
               agent={agent}
+              index={index}
               onClick={() => setSelectedAgent(agent)}
             />
           ))}

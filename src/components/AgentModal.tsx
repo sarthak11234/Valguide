@@ -13,6 +13,78 @@ interface AgentModalProps {
 
 type TabKey = "lore" | "abilities" | "stats";
 
+/* ── Ability card with click-to-play video ─────────────── */
+function AbilityCardWithVideo({
+  ability,
+  videoUrl,
+}: {
+  ability: Agent["abilities"][number];
+  videoUrl: string | null;
+}) {
+  const [showVideo, setShowVideo] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const handlePlay = () => {
+    setLoading(true);
+    setShowVideo(true);
+  };
+
+  return (
+    <div className="ability-card">
+      <div className="ability-card__header">
+        {ability.displayIcon && (
+          <img
+            src={ability.displayIcon}
+            alt={ability.displayName}
+            className="ability-card__icon"
+          />
+        )}
+        <div>
+          <span className="ability-card__slot">
+            {ability.slot.toUpperCase()}
+          </span>
+          <h4 className="ability-card__name">{ability.displayName}</h4>
+        </div>
+      </div>
+      <p className="ability-card__desc">{ability.description}</p>
+
+      {/* Video section — click to load */}
+      {videoUrl ? (
+        showVideo ? (
+          <div className="ability-card__video">
+            <div className="ability-card__video-label">▶ FIELD FOOTAGE</div>
+            {loading && (
+              <div className="ability-card__video-loading">
+                <div className="ability-card__spinner" />
+              </div>
+            )}
+            <iframe
+              src={videoUrl}
+              title={`${ability.displayName} preview`}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="ability-card__iframe"
+              style={loading ? { display: "none" } : {}}
+              onLoad={() => setLoading(false)}
+            />
+          </div>
+        ) : (
+          <div className="ability-card__video-thumb" onClick={handlePlay}>
+            <div className="ability-card__thumb-label">▶ FIELD FOOTAGE</div>
+            <div className="ability-card__thumb-inner">
+              <div className="ability-card__play-btn" />
+            </div>
+          </div>
+        )
+      ) : (
+        <div className="ability-card__no-video">
+          <span>// NO FOOTAGE AVAILABLE</span>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function AgentModal({ agent, onClose }: AgentModalProps) {
   const [activeTab, setActiveTab] = useState<TabKey>("lore");
 
@@ -153,48 +225,11 @@ export default function AgentModal({ agent, onClose }: AgentModalProps) {
                         ability.slot
                       );
                       return (
-                        <div key={ability.slot} className="ability-card">
-                          <div className="ability-card__header">
-                            {ability.displayIcon && (
-                              <img
-                                src={ability.displayIcon}
-                                alt={ability.displayName}
-                                className="ability-card__icon"
-                              />
-                            )}
-                            <div>
-                              <span className="ability-card__slot">
-                                {ability.slot.toUpperCase()}
-                              </span>
-                              <h4 className="ability-card__name">
-                                {ability.displayName}
-                              </h4>
-                            </div>
-                          </div>
-                          <p className="ability-card__desc">
-                            {ability.description}
-                          </p>
-
-                          {/* Video preview section */}
-                          {videoUrl ? (
-                            <div className="ability-card__video">
-                              <div className="ability-card__video-label">
-                                ▶ FIELD FOOTAGE
-                              </div>
-                              <iframe
-                                src={videoUrl}
-                                title={`${ability.displayName} preview`}
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowFullScreen
-                                className="ability-card__iframe"
-                              />
-                            </div>
-                          ) : (
-                            <div className="ability-card__no-video">
-                              <span>// NO FOOTAGE AVAILABLE</span>
-                            </div>
-                          )}
-                        </div>
+                        <AbilityCardWithVideo
+                          key={ability.slot}
+                          ability={ability}
+                          videoUrl={videoUrl}
+                        />
                       );
                     })}
                   </div>
