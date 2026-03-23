@@ -67,7 +67,7 @@ export default function Home() {
               style={{
                 top: `${12 + i * 11}%`,
                 animationDelay: `${i * 0.3}s`,
-                opacity: 0.15 + Math.random() * 0.15,
+                opacity: 0.15 + ((i * 7) % 5) * 0.03,
               }}
             />
           ))}

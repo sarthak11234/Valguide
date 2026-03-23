@@ -83,12 +83,12 @@ export interface AgentSpecialist {
 }
 
 export const agentSpecialists: AgentSpecialist[] = [
-  { playerName: "something", team: "Paper Rex", agent: "Jett", agentRole: "Duelist", kda: 1.42, winRate: 68, stats: { aim: 95, gamesense: 80, utility: 60, clutch: 85, movement: 98 }, imageUrl: "https://static-cdn.jtvnw.net/user-default-pictures-uv/41780b5a-def8-11e9-94d9-784f43822e80-profile_image-300x300.png" },
-  { playerName: "Dambi", team: "Nongshim RedForce", agent: "Miks", agentRole: "Controller", kda: 1.28, winRate: 74, stats: { aim: 72, gamesense: 96, utility: 98, clutch: 80, movement: 70 }, imageUrl: "https://static-cdn.jtvnw.net/user-default-pictures-uv/ce57700a-def9-11e9-842d-784f43822e80-profile_image-300x300.png" },
-  { playerName: "ZmjjKK", team: "EDward Gaming", agent: "Jett", agentRole: "Duelist", kda: 1.38, winRate: 65, stats: { aim: 97, gamesense: 85, utility: 55, clutch: 92, movement: 90 }, imageUrl: "https://static-cdn.jtvnw.net/user-default-pictures-uv/ce57700a-def9-11e9-842d-784f43822e80-profile_image-300x300.png" },
-  { playerName: "nAts", team: "Team Liquid", agent: "Cypher", agentRole: "Sentinel", kda: 1.18, winRate: 62, stats: { aim: 78, gamesense: 99, utility: 95, clutch: 88, movement: 65 }, imageUrl: "https://static-cdn.jtvnw.net/jtv_user_pictures/e4e40827-cb49-4dd5-a274-dab81a84e337-profile_image-300x300.png" },
-  { playerName: "aspas", team: "MIBR", agent: "Raze", agentRole: "Duelist", kda: 1.32, winRate: 66, stats: { aim: 94, gamesense: 82, utility: 70, clutch: 90, movement: 92 }, imageUrl: "https://static-cdn.jtvnw.net/jtv_user_pictures/56adcee0-86f1-4ade-bcd9-8d9bde1c6670-profile_image-300x300.png" },
-  { playerName: "Derke", team: "Team Vitality", agent: "Raze", agentRole: "Duelist", kda: 1.24, winRate: 63, stats: { aim: 93, gamesense: 78, utility: 65, clutch: 82, movement: 88 }, imageUrl: "https://static-cdn.jtvnw.net/jtv_user_pictures/13e263e1-7e99-4cab-b25c-a36c34488b7e-profile_image-300x300.png" },
+  { playerName: "something", team: "Paper Rex", agent: "Jett", agentRole: "Duelist", kda: 1.42, winRate: 68, stats: { aim: 95, gamesense: 80, utility: 60, clutch: 85, movement: 98 }, imageUrl: "/images/players/something.png" },
+  { playerName: "Dambi", team: "Nongshim RedForce", agent: "Miks", agentRole: "Controller", kda: 1.28, winRate: 74, stats: { aim: 72, gamesense: 96, utility: 98, clutch: 80, movement: 70 }, imageUrl: "/images/players/dambi.png" },
+  { playerName: "ZmjjKK", team: "EDward Gaming", agent: "Jett", agentRole: "Duelist", kda: 1.38, winRate: 65, stats: { aim: 97, gamesense: 85, utility: 55, clutch: 92, movement: 90 }, imageUrl: "/images/players/zmjjkk.png" },
+  { playerName: "nAts", team: "Team Liquid", agent: "Cypher", agentRole: "Sentinel", kda: 1.18, winRate: 62, stats: { aim: 78, gamesense: 99, utility: 95, clutch: 88, movement: 65 }, imageUrl: "/images/players/nats.png" },
+  { playerName: "aspas", team: "MIBR", agent: "Raze", agentRole: "Duelist", kda: 1.32, winRate: 66, stats: { aim: 94, gamesense: 82, utility: 70, clutch: 90, movement: 92 }, imageUrl: "/images/players/aspas.png" },
+  { playerName: "Derke", team: "Team Vitality", agent: "Raze", agentRole: "Duelist", kda: 1.24, winRate: 63, stats: { aim: 93, gamesense: 78, utility: 65, clutch: 82, movement: 88 }, imageUrl: "/images/players/derke.png" },
 ];
 
 // --- Map KDA Table ---

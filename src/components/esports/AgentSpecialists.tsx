@@ -36,6 +36,7 @@ function SpecialistCard({ spec }: { spec: AgentSpecialist }) {
             src={spec.imageUrl || `https://api.dicebear.com/9.x/micah/svg?seed=${spec.playerName}`}
             alt={spec.playerName}
             className="w-full h-full object-cover"
+            referrerPolicy="no-referrer"
             onError={(e) => { e.currentTarget.src = `https://api.dicebear.com/9.x/micah/svg?seed=${spec.playerName}`; }}
           />
         </div>
