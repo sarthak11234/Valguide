@@ -5,11 +5,15 @@ import Button from "./Button";
 export default function Hero() {
   return (
     <section className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-(--val-navy)">
-      {/* Background Placeholder Image */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30 mix-blend-luminosity"
-        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070&auto=format&fit=crop')" }}
-      />
+      {/* Valorant Cinematic Video Background */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none w-full h-full bg-black">
+        <iframe
+          src="https://www.youtube.com/embed/e_E9W2vsRbQ?autoplay=1&mute=1&loop=1&playlist=e_E9W2vsRbQ&controls=0&modestbranding=1&playsinline=1&rel=0"
+          title="Valorant Cinematic"
+          className="absolute top-1/2 left-1/2 min-w-[150vw] min-h-[150vh] -translate-x-1/2 -translate-y-1/2 opacity-30 mix-blend-luminosity pointer-events-none scale-125 md:scale-100"
+          sandbox="allow-same-origin allow-scripts allow-presentation"
+        />
+      </div>
       
       {/* Halftone Overlay */}
       <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(57,255,20,0.06)_1px,transparent_1px)] bg-[length:12px_12px]" />
