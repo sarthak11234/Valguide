@@ -8,6 +8,7 @@ const NAV_LINKS = [
   { name: "AGENTS ARCHIVE", href: "/agents" },
   { name: "TACTICAL TOOLKIT", href: "/toolkit" },
   { name: "MAP INTEL", href: "/maps" },
+  { name: "GLOBAL RADAR", href: "/globe" },
   { name: "LORE REGISTRY", href: "/lore" },
 ];
 
@@ -32,7 +33,7 @@ export default function Navigation() {
               <Link 
                 key={link.name} 
                 href={link.href}
-                className="relative px-4 py-2 text-sm font-bold tracking-[0.1em] text-(--val-offwhite) hover:text-(--val-cyan) transition-colors skew-x-[-10deg] group"
+                className="relative px-3 py-2 text-sm font-bold tracking-[0.1em] text-(--val-offwhite) hover:text-(--val-cyan) transition-colors skew-x-[-10deg] group"
               >
                 <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                 <span className="block skew-x-[10deg]">{link.name}</span>

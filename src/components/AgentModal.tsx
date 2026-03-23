@@ -4,14 +4,14 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Agent } from "@/types";
 import { getAbilityVideo } from "@/data/ability-videos";
-import { getAgentLore } from "@/data/agent-lore";
+import { getAgentLore, getAgentTactics } from "@/data/agent-lore";
 
 interface AgentModalProps {
   agent: Agent;
   onClose: () => void;
 }
 
-type TabKey = "lore" | "abilities" | "stats";
+type TabKey = "lore" | "abilities" | "stats" | "tactics";
 
 /* ── Ability card with click-to-play video ─────────────── */
 function AbilityCardWithVideo({
@@ -96,6 +96,7 @@ export default function AgentModal({ agent, onClose }: AgentModalProps) {
     { key: "lore", label: "LORE" },
     { key: "abilities", label: "ABILITIES" },
     { key: "stats", label: "STATS" },
+    { key: "tactics", label: "TACTICS" },
   ];
 
   return (
@@ -270,6 +271,75 @@ export default function AgentModal({ agent, onClose }: AgentModalProps) {
                       </span>
                     </div>
                   </div>
+                </motion.div>
+              )}
+
+              {activeTab === "tactics" && (
+                <motion.div
+                  key="tactics"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  className="modal-tab-content h-full p-4"
+                >
+                  {(() => {
+                    const agentTactics = getAgentTactics(agent.displayName);
+                    if (!agentTactics) {
+                      return (
+                        <div className="w-full h-full flex items-center justify-center p-12 border-4 border-dashed border-gray-700">
+                          <span className="font-black text-gray-500 uppercase tracking-widest text-xl text-center">
+                            // NO TACTICAL RECON AVAILABLE FOR THIS OPERATIVE.
+                          </span>
+                        </div>
+                      );
+                    }
+                    
+                    return (
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 h-full">
+                        {/* SYN */}
+                        <div className="border-[6px] border-black bg-[#0F1923] relative md:shadow-[8px_8px_0px_#39FF14] transition-shadow hover:shadow-[12px_12px_0px_#39FF14]">
+                          <div className="absolute -top-5 left-4 z-10">
+                            <span className="bg-[#39FF14] text-black font-[family:var(--font-tungsten)] text-3xl tracking-widest uppercase px-4 py-1 border-4 border-black block transform -skew-x-12">
+                              BEST PAIRED WITH
+                            </span>
+                          </div>
+                          <div className="p-6 pt-10 h-full bg-[radial-gradient(circle,rgba(57,255,20,0.05)_2px,transparent_2px)] bg-[length:12px_12px]">
+                            {agentTactics.bestPairedWith.map((synergy, idx) => (
+                              <div key={idx} className="mb-4 last:mb-0 border-l-[6px] border-[#39FF14] bg-black/80 p-4 group hover:bg-[#39FF14]/10 transition-colors">
+                                <div className="flex items-center gap-3 mb-2">
+                                  <span className="text-xl font-black text-[#39FF14] tracking-widest uppercase line-clamp-1 group-hover:pl-2 transition-all">
+                                    + {synergy.name}
+                                  </span>
+                                </div>
+                                <p className="text-sm text-gray-300 font-medium leading-relaxed italic">"{synergy.reason}"</p>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* CNTR */}
+                        <div className="border-[6px] border-black bg-[#0F1923] relative md:shadow-[8px_8px_0px_#FF4655] transition-shadow hover:shadow-[12px_12px_0px_#FF4655]">
+                          <div className="absolute -top-5 left-4 z-10">
+                            <span className="bg-[#FF4655] text-white font-[family:var(--font-tungsten)] text-3xl tracking-widest uppercase px-4 py-1 border-4 border-black block transform -skew-x-12">
+                              COUNTERED BY
+                            </span>
+                          </div>
+                          <div className="p-6 pt-10 h-full bg-[radial-gradient(circle,rgba(255,70,85,0.05)_2px,transparent_2px)] bg-[length:12px_12px]">
+                            {agentTactics.counteredBy.map((counter, idx) => (
+                              <div key={idx} className="mb-4 last:mb-0 border-l-[6px] border-[#FF4655] bg-black/80 p-4 group hover:bg-[#FF4655]/10 transition-colors">
+                                <div className="flex items-center gap-3 mb-2">
+                                  <span className="text-xl font-black text-[#FF4655] tracking-widest uppercase line-clamp-1 group-hover:pl-2 transition-all">
+                                    VS {counter.name}
+                                  </span>
+                                </div>
+                                <p className="text-sm text-gray-300 font-medium leading-relaxed italic">"{counter.reason}"</p>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })()}
                 </motion.div>
               )}
             </AnimatePresence>

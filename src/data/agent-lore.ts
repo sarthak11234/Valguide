@@ -69,3 +69,259 @@ export function getAgentLore(agentName: string): string {
 
   return `Little is known about ${agentName}'s life prior to joining the VALORANT Protocol. Operative details are currently heavily redacted by command. Classified documents suggest a history involving extensive combat experience and significant Radianite exposure.`;
 }
+
+export interface AgentTactics {
+  bestPairedWith: { name: string; reason: string }[];
+  counteredBy: { name: string; reason: string }[];
+}
+
+export const agentTactics: Record<string, AgentTactics> = {
+  Jett: {
+    bestPairedWith: [
+      { name: "Breach", reason: "Flashes and stuns clear angles for safe dashing." },
+      { name: "Sova", reason: "Recon dart reveals targets before she entries." }
+    ],
+    counteredBy: [
+      { name: "Cypher", reason: "Trapwires catch her mid-dash." },
+      { name: "KAY/O", reason: "Suppression cancels her ultimate." }
+    ]
+  },
+  Phoenix: {
+    bestPairedWith: [
+      { name: "Omen", reason: "Paranoia helps Phoenix secure aggressive peeks." },
+      { name: "Sage", reason: "Wall allows for safe ultimate usage." }
+    ],
+    counteredBy: [
+      { name: "Viper", reason: "Poison orb blocks his flashes easily." },
+      { name: "Killjoy", reason: "Turret breaks his fast entry." }
+    ]
+  },
+  Reyna: {
+    bestPairedWith: [
+      { name: "Skye", reason: "Guiding Light blinds multiple enemies for easy initial kills." },
+      { name: "Brimstone", reason: "Stim beacon gives her terrifying fire-rate." }
+    ],
+    counteredBy: [
+      { name: "Breach", reason: "Faultline concusses her out of aggressive angles." },
+      { name: "Fade", reason: "Prowlers track her down even after dismissing." }
+    ]
+  },
+  Viper: {
+    bestPairedWith: [
+      { name: "Killjoy", reason: "Nanoswarms combined with snakebite makes defusing impossible." },
+      { name: "Harbor", reason: "Double wall strategies map control completely." }
+    ],
+    counteredBy: [
+      { name: "Sova", reason: "Recon dart ignores her thick smokes." },
+      { name: "Jett", reason: "Can updraft and dash straight over the toxic screen." }
+    ]
+  },
+  Omen: {
+    bestPairedWith: [
+      { name: "Raze", reason: "Paranoia enables safe Boom Bot entry." },
+      { name: "Fade", reason: "Seize combined with Paranoia is a guaranteed kill." }
+    ],
+    counteredBy: [
+      { name: "Cypher", reason: "Trips cover the flanks he relies on." },
+      { name: "KAY/O", reason: "Suppression stops his teleport escapes." }
+    ]
+  },
+  Chamber: {
+    bestPairedWith: [
+      { name: "Astra", reason: "Her stars can combo with his traps for stall." },
+      { name: "Jett", reason: "Double Operator setups lock down sites." }
+    ],
+    counteredBy: [
+      { name: "KAY/O", reason: "Suppression destroys his weapon arsenal." },
+      { name: "Breach", reason: "Aftershock forces him off his teleport anchor." }
+    ]
+  },
+  Sage: {
+    bestPairedWith: [
+      { name: "Reyna", reason: "Consistent healing keeps the carry alive." },
+      { name: "Omen", reason: "Can teleport above her walls for unexpected angles." }
+    ],
+    counteredBy: [
+      { name: "Raze", reason: "Blast packs instantly break segments of her wall." },
+      { name: "Viper", reason: "Snakebite molly prevents planting behind Sage wall." }
+    ]
+  },
+  Brimstone: {
+    bestPairedWith: [
+      { name: "Raze", reason: "Stim beacon makes Raze's movement even faster." },
+      { name: "Killjoy", reason: "Ultimate and Lockdown combo clears entire sites." }
+    ],
+    counteredBy: [
+      { name: "Omen", reason: "Global smokes out-range Brimstone's limited iPad radius." },
+      { name: "KAY/O", reason: "Knife disables him during crucial execution timings." }
+    ]
+  },
+  Killjoy: {
+    bestPairedWith: [
+      { name: "Viper", reason: "Post-plant utility forces enemies to panic." },
+      { name: "Astra", reason: "Astral pull pulls enemies into Nanoswarms." }
+    ],
+    counteredBy: [
+      { name: "Sova", reason: "Shock darts easily destroy her hidden setups." },
+      { name: "KAY/O", reason: "ZERO/point disables all her traps before a site hit." }
+    ]
+  },
+  Cypher: {
+    bestPairedWith: [
+      { name: "Sova", reason: "Information overload for the whole map." },
+      { name: "Omen", reason: "One-way smokes combo perfectly with tripwires." }
+    ],
+    counteredBy: [
+      { name: "Raze", reason: "Grenades and Boom Bots break tripwires easily." },
+      { name: "Sova", reason: "Owl drone breaks trips safely." }
+    ]
+  },
+  Sova: {
+    bestPairedWith: [
+      { name: "Jett", reason: "Hunter's Fury forces enemies into Jett's Operator crosshairs." },
+      { name: "Killjoy", reason: "Shock darts delay defusals while Nanoswarms recharge." }
+    ],
+    counteredBy: [
+      { name: "Viper", reason: "Thick smokes block Sova's line of sight for regular darts." },
+      { name: "Omen", reason: "Can teleport out of the way of Hunter's Fury." }
+    ]
+  },
+  Raze: {
+    bestPairedWith: [
+      { name: "Fade", reason: "Seize traps enemies in Raze's Paint Shells." },
+      { name: "Breach", reason: "Stuns guarantee a clean Showstopper kill." }
+    ],
+    counteredBy: [
+      { name: "Cypher", reason: "Trapwires catch her mid-satchel." },
+      { name: "KAY/O", reason: "Disables her explosive kit, forcing gunplay." }
+    ]
+  },
+  Fade: {
+    bestPairedWith: [
+      { name: "Raze", reason: "Seize connects perfectly with grenades." },
+      { name: "Omen", reason: "Nightfall into Paranoia creates total chaos." }
+    ],
+    counteredBy: [
+      { name: "Yoru", reason: "Can clone decoy to waste her Prowlers." },
+      { name: "Jett", reason: "Dashes away from Seize center." }
+    ]
+  },
+  Breach: {
+    bestPairedWith: [
+      { name: "Jett", reason: "Faultline setups give her free entry kills." },
+      { name: "Neon", reason: "Stunned enemies are easy targets for Neon's slide." }
+    ],
+    counteredBy: [
+      { name: "Omen", reason: "Can teleport out of Faultline zones." },
+      { name: "Chamber", reason: "Teleports away from Rolling Thunder." }
+    ]
+  },
+  Neon: {
+    bestPairedWith: [
+      { name: "Breach", reason: "Stuns let her sprint in safely." },
+      { name: "Skye", reason: "Hawk flashes clear the way for her fast lane." }
+    ],
+    counteredBy: [
+      { name: "Cypher", reason: "Cannot slide over tripwires." },
+      { name: "Deadlock", reason: "Sonic sensors proc instantly when she sprints." }
+    ]
+  },
+  Astra: {
+    bestPairedWith: [
+      { name: "Killjoy", reason: "Gravity well pulls defenders into Nanoswarms." },
+      { name: "Viper", reason: "Double controller setup gives total map lockdown." }
+    ],
+    counteredBy: [
+      { name: "KAY/O", reason: "Suppression forces her out of astral form." },
+      { name: "Jett", reason: "Dashes through Nebula smokes instantly." }
+    ]
+  },
+  Skye: {
+    bestPairedWith: [
+      { name: "Jett", reason: "Guiding light creates the perfect opening for entry." },
+      { name: "Reyna", reason: "Dog clears close corners for Reyna to follow." }
+    ],
+    counteredBy: [
+      { name: "KAY/O", reason: "Disables her healing and flashes." },
+      { name: "Cypher", reason: "Flashes don't affect his trapwires." }
+    ]
+  },
+  Gekko: {
+    bestPairedWith: [
+      { name: "Harbor", reason: "Cove bubble provides safe plant for Wingman." },
+      { name: "Breach", reason: "Stuns make it impossible to dodge Mosh Pit." }
+    ],
+    counteredBy: [
+      { name: "Viper", reason: "Snakebite melts Wingman during plant/defuse." },
+      { name: "Killjoy", reason: "Turret shoots down Dizzy easily." }
+    ]
+  },
+  Deadlock: {
+    bestPairedWith: [
+      { name: "Raze", reason: "GravNet combos brilliantly with Paint Shells." },
+      { name: "Viper", reason: "Barrier mesh keeps enemies trapped in Viper's pit." }
+    ],
+    counteredBy: [
+      { name: "Yoru", reason: "Clone triggers Sonic Sensors harmlessly." },
+      { name: "Sova", reason: "Shock darts destroy her sensors without making noise." }
+    ]
+  },
+  "KAY/O": {
+    bestPairedWith: [
+      { name: "Jett", reason: "ZERO/point knife creates safe, trap-free entries." },
+      { name: "Sova", reason: "Drone and Knife provide complete info." }
+    ],
+    counteredBy: [
+      { name: "Reyna", reason: "Suppression doesn't matter if her aim is better." },
+      { name: "Chamber", reason: "Can hold deep angles beyond knife radius." }
+    ]
+  },
+  Harbor: {
+    bestPairedWith: [
+      { name: "Viper", reason: "The ultimate wall-spam meta composition." },
+      { name: "Gekko", reason: "Cove protects Wingman perfectly." }
+    ],
+    counteredBy: [
+      { name: "Sova", reason: "Recon dart ignores his water walls." },
+      { name: "Breach", reason: "Flashes easily penetrate his Cascade." }
+    ]
+  },
+  Iso: {
+    bestPairedWith: [
+      { name: "Omen", reason: "Paranoia helps Iso secure his first Double Tap shield." },
+      { name: "Fade", reason: "Prowlers track targets for easy isolated 1v1s." }
+    ],
+    counteredBy: [
+      { name: "Killjoy", reason: "Turret breaks his Double Tap shield instantly." },
+      { name: "Viper", reason: "Decay damage negates his shield advantage." }
+    ]
+  },
+  Vyse: {
+    bestPairedWith: [
+      { name: "Raze", reason: "Trapped enemies in Shear are easy Paint Shell targets." },
+      { name: "Breach", reason: "Stun locked enemies cannot escape Arc Rose." }
+    ],
+    counteredBy: [
+      { name: "Yoru", reason: "Teleports out of Shear traps." },
+      { name: "Sova", reason: "Can destroy Arc Rose with precise Shock Darts." }
+    ]
+  },
+  Clove: {
+    bestPairedWith: [
+      { name: "Reyna", reason: "Aggressive duo that takes duels continuously." },
+      { name: "Omen", reason: "Double aggressive smokes for chaotic executes." }
+    ],
+    counteredBy: [
+      { name: "KAY/O", reason: "Suppression prevents ultimate self-resurrection." },
+      { name: "Cypher", reason: "Trips counter aggressive overheal pushes." }
+    ]
+  }
+};
+
+/**
+ * Returns synergy and counter data for the selected agent.
+ */
+export function getAgentTactics(agentName: string): AgentTactics | null {
+  return agentTactics[agentName] || null;
+}
+

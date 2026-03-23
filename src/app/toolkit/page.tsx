@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import SensCalculator from '@/components/SensCalculator';
 import WeaponComparison from '@/components/WeaponComparison';
 import JaggedDivider from '@/components/JaggedDivider';
+import CrosshairPreviewer from '@/components/CrosshairPreviewer';
 
 export const metadata: Metadata = {
   title: 'Tactical Toolkit',
@@ -36,7 +37,19 @@ export default function ToolkitPage() {
         <SensCalculator />
       </section>
 
-      <JaggedDivider color="fill-black" height="h-[40px] md:h-[60px]" />
+      <JaggedDivider color="fill-[#FF4655]" height="h-[30px]" />
+
+      {/* Crosshair Previewer Section */}
+      <section className="w-full bg-[#FF4655]" id="crosshair">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16">
+          <h2 className="text-3xl md:text-4xl font-black text-black italic tracking-wider mb-8 drop-shadow-[2px_2px_0px_rgba(255,255,255,0.3)]">
+            // PRO CROSSHAIR PROFILES
+          </h2>
+          <CrosshairPreviewer />
+        </div>
+      </section>
+
+      <JaggedDivider color="fill-[#111820]" height="h-[40px] md:h-[60px]" />
 
       {/* Weapon Comparison Section */}
       <section className="w-full bg-[#111820]" id="weapons">
