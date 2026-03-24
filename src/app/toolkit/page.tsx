@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import SensCalculator from '@/components/SensCalculator';
 import WeaponComparison from '@/components/WeaponComparison';
+import CrosshairGenerator from '@/components/CrosshairGenerator';
 import JaggedDivider from '@/components/JaggedDivider';
 
 export const metadata: Metadata = {
@@ -37,6 +38,16 @@ export default function ToolkitPage() {
       </section>
 
       <JaggedDivider color="fill-black" height="h-[40px] md:h-[60px]" />
+
+      {/* Crosshair Generator Section */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 py-12" id="crosshair">
+        <h2 className="text-3xl md:text-4xl font-black text-[#FF4655] italic tracking-wider mb-8 drop-shadow-[2px_2px_0px_#000]">
+          // OPTICS CALIBRATION
+        </h2>
+        <CrosshairGenerator />
+      </section>
+
+      <JaggedDivider color="fill-[var(--val-navy)]" height="h-[40px] md:h-[60px]" />
 
       {/* Weapon Comparison Section */}
       <section className="w-full bg-[#111820]" id="weapons">
