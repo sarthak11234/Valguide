@@ -85,7 +85,7 @@ Open [http://localhost:3000](http://localhost:3000)
 |-------|--------|-------|
 | **Phase 1 (MVP)** | ✅ Done | SAGE Chatbot + API Proxy Routes |
 | **Phase 2** | ✅ Done | Tactical Toolkit (eDPI + Weapon Comparison) |
-| **Phase 3** | 🔲 Pending | Agent Archive, Lore Timeline, Map Intel |
+| **Phase 3** |  Pending | Agent Archive, Lore Timeline, Map Intel |
 
 ---
 
