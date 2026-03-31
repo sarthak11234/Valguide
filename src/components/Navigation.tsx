@@ -8,7 +8,9 @@ const NAV_LINKS = [
   { name: "AGENTS ARCHIVE", href: "/agents" },
   { name: "TACTICAL TOOLKIT", href: "/toolkit" },
   { name: "MAP INTEL", href: "/maps" },
+  { name: "VCT ESPORTS", href: "/esports" },
   { name: "LORE REGISTRY", href: "/lore" },
+  { name: "SAGE INTEL", href: "/sage" },
 ];
 
 export default function Navigation() {
