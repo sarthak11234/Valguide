@@ -5,11 +5,8 @@ const SAGE_PROMPT = `You are "SAGE", a highly knowledgeable AI recruitment bot f
 
 export async function POST(req: Request) {
   try {
-    const { messages } = await req.json();
-    
-    // Extract experience level from the most recent user message
-    const lastMessage = messages[messages.length - 1];
-    const experienceLevel = lastMessage?.experienceLevel || "Beginner";
+    const body = await req.json();
+    const { messages, experienceLevel = "Beginner" } = body;
     
     let levelContext = "";
     if (experienceLevel === "Beginner") {
@@ -20,11 +17,9 @@ export async function POST(req: Request) {
       levelContext = "The recruit is an ADVANCED FPS veteran. Skip the basics. Give them high-level macro strategy, precise lineups, and deep meta analysis.";
     }
     
-    const finalSystemPrompt = experienceLevel 
-      ? `${SAGE_PROMPT}\n\nCRITICAL CONTEXT: ${levelContext}`
-      : SAGE_PROMPT;
+    const finalSystemPrompt = `${SAGE_PROMPT}\n\nCRITICAL CONTEXT: ${levelContext}`;
 
-    const result = await streamText({
+    const result = streamText({
       model: google('models/gemini-1.5-pro-latest'),
       system: finalSystemPrompt,
       messages,
@@ -37,7 +32,7 @@ export async function POST(req: Request) {
       JSON.stringify({ 
         error: "Failed to generate AI response. Make sure GOOGLE_GENERATIVE_AI_API_KEY is defined in .env.local" 
       }), 
-      { status: 500 }
+      { status: 500, headers: { 'Content-Type': 'application/json' } }
     );
   }
 }

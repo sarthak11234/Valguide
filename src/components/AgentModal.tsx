@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Agent } from "@/types";
 import { getAbilityVideo } from "@/data/ability-videos";
@@ -98,6 +98,22 @@ export default function AgentModal({ agent, onClose }: AgentModalProps) {
     { key: "stats", label: "STATS" },
   ];
 
+  // Escape key to close
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
+    if (e.key === "Escape") onClose();
+  }, [onClose]);
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyDown);
+    // Lock body scroll
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [handleKeyDown]);
+
   return (
     <AnimatePresence>
       <motion.div
@@ -106,6 +122,9 @@ export default function AgentModal({ agent, onClose }: AgentModalProps) {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         onClick={onClose}
+        role="dialog"
+        aria-modal="true"
+        aria-label={`${agent.displayName} agent details`}
       >
         <motion.div
           className="modal-content"
@@ -119,7 +138,7 @@ export default function AgentModal({ agent, onClose }: AgentModalProps) {
           }}
         >
           {/* Close button */}
-          <button className="modal-close" onClick={onClose}>
+          <button className="modal-close" onClick={onClose} aria-label="Close agent details">
             ✕
           </button>
 

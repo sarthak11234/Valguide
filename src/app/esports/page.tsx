@@ -45,9 +45,7 @@ export default function EsportsPage() {
   useEffect(() => {
     async function fetchAgents() {
       try {
-        const res = await fetch(
-          "https://valorant-api.com/v1/agents?isPlayableCharacter=true"
-        );
+        const res = await fetch("/api/agents");
         const json = await res.json();
         if (json.data) setAgentsApiData(json.data);
       } catch {
@@ -421,7 +419,7 @@ export default function EsportsPage() {
                         <div className="flex justify-between items-center p-4 border-b-4 border-black">
                           <div className="flex items-center gap-4">
                             {team.logoUrl && (
-                              <img 
+                              <img loading="lazy" 
                                 src={`https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://${team.logoUrl.replace('https://logo.clearbit.com/', '')}&size=128`}
                                 alt={team.name} 
                                 className="w-10 h-10 object-contain bg-white rounded-md border-2 border-black/10 shrink-0 p-1" 

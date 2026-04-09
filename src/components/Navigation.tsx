@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
 const NAV_LINKS = [
@@ -15,11 +16,17 @@ const NAV_LINKS = [
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    return pathname.startsWith(href);
+  };
 
   return (
     <>
       <nav className="fixed top-0 left-0 w-full z-40 bg-(--val-navy) border-b-[4px] border-black shadow-[0_4px_0px_#FF4655]">
-        <div className="flex items-center justify-between px-6 py-4">
+        <div className="flex items-center justify-between px-4 sm:px-6 py-4">
           {/* Logo Section */}
           <Link href="/" className="group flex items-center gap-3">
             <div className="w-10 h-10 bg-(--val-red) skew-x-[-10deg] border-[3px] border-black grid place-items-center group-hover:bg-(--val-cyan) transition-colors">
@@ -29,15 +36,28 @@ export default function Navigation() {
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden lg:flex gap-6 items-center">
+          <div className="hidden lg:flex gap-1 xl:gap-3 items-center">
             {NAV_LINKS.map((link) => (
               <Link 
                 key={link.name} 
                 href={link.href}
-                className="relative px-4 py-2 text-sm font-bold tracking-[0.1em] text-(--val-offwhite) hover:text-(--val-cyan) transition-colors skew-x-[-10deg] group"
+                className={`relative px-3 xl:px-4 py-2 text-xs xl:text-sm font-bold tracking-[0.08em] xl:tracking-[0.1em] transition-colors skew-x-[-10deg] group ${
+                  isActive(link.href)
+                    ? "text-black"
+                    : "text-(--val-offwhite) hover:text-(--val-cyan)"
+                }`}
               >
-                <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                <span className="block skew-x-[10deg]">{link.name}</span>
+                {/* Active background */}
+                <div className={`absolute inset-0 transition-opacity ${
+                  isActive(link.href)
+                    ? "bg-(--val-red) opacity-100"
+                    : "bg-white/5 opacity-0 group-hover:opacity-100"
+                }`} />
+                {/* Active top accent bar */}
+                {isActive(link.href) && (
+                  <div className="absolute top-0 left-0 right-0 h-[3px] bg-(--val-cyan)" />
+                )}
+                <span className="block skew-x-[10deg] relative z-10">{link.name}</span>
               </Link>
             ))}
           </div>
@@ -46,6 +66,7 @@ export default function Navigation() {
           <button 
             onClick={() => setIsOpen(!isOpen)}
             className="lg:hidden flex flex-col gap-1.5 p-2 bg-transparent border-none cursor-pointer z-50 relative"
+            aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
           >
             <motion.div animate={{ rotate: isOpen ? 45 : 0, y: isOpen ? 10 : 0 }} className="w-8 h-[4px] bg-(--val-offwhite) border border-black" />
             <motion.div animate={{ opacity: isOpen ? 0 : 1 }} className="w-8 h-[4px] bg-(--val-offwhite) border border-black" />
@@ -75,9 +96,15 @@ export default function Navigation() {
                 <Link 
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="block w-full bg-black/40 border-[3px] border-black p-4 mb-2 skew-x-[-5deg] hover:bg-(--val-red) transition-colors group"
+                  className={`block w-full border-[3px] border-black p-4 mb-2 skew-x-[-5deg] transition-colors group ${
+                    isActive(link.href)
+                      ? "bg-(--val-red)"
+                      : "bg-black/40 hover:bg-(--val-red)"
+                  }`}
                 >
-                  <span className="block skew-x-[5deg] font-[family:var(--font-tungsten)] text-3xl tracking-wider text-white group-hover:text-black">
+                  <span className={`block skew-x-[5deg] font-[family:var(--font-tungsten)] text-3xl tracking-wider group-hover:text-black ${
+                    isActive(link.href) ? "text-black" : "text-white"
+                  }`}>
                     {link.name}
                   </span>
                 </Link>

@@ -11,6 +11,14 @@ const COLORS = [
   { name: "Pink", hex: "#FF69B4", code: 6 },
 ];
 
+const PRO_CROSSHAIRS = [
+  { name: "TenZ", color: 0, showDot: false, dotThickness: 1, showInner: true, innerLength: 4, innerThickness: 2, innerOffset: 2 },
+  { name: "aspas", color: 5, showDot: false, dotThickness: 1, showInner: true, innerLength: 3, innerThickness: 2, innerOffset: 3 },
+  { name: "Demon1", color: 0, showDot: true, dotThickness: 2, showInner: true, innerLength: 3, innerThickness: 2, innerOffset: 3 },
+  { name: "ScreaM", color: 5, showDot: true, dotThickness: 3, showInner: false, innerLength: 0, innerThickness: 0, innerOffset: 0 },
+  { name: "nAts", color: 1, showDot: false, dotThickness: 1, showInner: true, innerLength: 5, innerThickness: 2, innerOffset: 1 },
+];
+
 export default function CrosshairGenerator() {
   // Color
   const [color, setColor] = useState(COLORS[0]);
@@ -53,6 +61,17 @@ export default function CrosshairGenerator() {
     navigator.clipboard.writeText(generateProfileCode());
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  const applyPreset = (preset: typeof PRO_CROSSHAIRS[number]) => {
+    const c = COLORS.find(cl => cl.code === preset.color) || COLORS[0];
+    setColor(c);
+    setShowDot(preset.showDot);
+    setDotThickness(preset.dotThickness);
+    setShowInner(preset.showInner);
+    setInnerLength(preset.innerLength);
+    setInnerThickness(preset.innerThickness);
+    setInnerOffset(preset.innerOffset);
   };
 
   return (
@@ -256,6 +275,24 @@ export default function CrosshairGenerator() {
               </div>
             </>
           )}
+        </div>
+
+        <div className="h-1 w-full bg-zinc-800 my-2" />
+
+        {/* Pro Presets */}
+        <div className="flex flex-col gap-2">
+          <label className="font-bold tracking-widest text-[#FF4655] text-sm uppercase">Pro Player Presets</label>
+          <div className="flex flex-wrap gap-2">
+            {PRO_CROSSHAIRS.map((preset) => (
+              <button
+                key={preset.name}
+                onClick={() => applyPreset(preset)}
+                className="bg-black/60 border-2 border-zinc-700 px-3 py-2 text-xs font-bold uppercase tracking-wider text-zinc-300 hover:border-[#FF4655] hover:text-[#FF4655] transition-colors"
+              >
+                {preset.name}
+              </button>
+            ))}
+          </div>
         </div>
 
       </div>

@@ -12,7 +12,7 @@ export default function MapsPage() {
   useEffect(() => {
     async function fetchMaps() {
       try {
-        const res = await fetch("https://valorant-api.com/v1/maps");
+        const res = await fetch("/api/maps");
         const json = await res.json();
         if (json.data) setMapsApiData(json.data);
       } catch (e) {

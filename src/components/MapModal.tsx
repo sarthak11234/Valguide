@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface MapModalProps {
@@ -10,8 +10,22 @@ type TabType = "INTEL" | "LINEUPS" | "LAYOUT" | "GALLERY" | "WALKTHROUGH";
 
 export default function MapModal({ mapData, onClose }: MapModalProps) {
   const [activeTab, setActiveTab] = useState<TabType>("INTEL");
-
   const lineups = mapData.lineups || [];
+
+  // Escape key to close
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
+    if (e.key === "Escape") onClose();
+  }, [onClose]);
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyDown);
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [handleKeyDown]);
 
   return (
     <motion.div
@@ -20,6 +34,9 @@ export default function MapModal({ mapData, onClose }: MapModalProps) {
       exit={{ opacity: 0 }}
       className="modal-backdrop"
       onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-label={`${mapData.name || mapData.displayName} map details`}
     >
       <motion.div
         initial={{ scale: 0.95, y: 20 }}
@@ -35,6 +52,7 @@ export default function MapModal({ mapData, onClose }: MapModalProps) {
         {/* Close Button */}
         <button
           onClick={onClose}
+          aria-label="Close map details"
           className="absolute top-4 right-4 z-50 w-10 h-10 border-4 border-black bg-white flex items-center justify-center hover:bg-[#FF4655] hover:text-white transition-colors group"
         >
           <span className="font-black text-xl group-hover:scale-110 transition-transform">
@@ -182,7 +200,7 @@ export default function MapModal({ mapData, onClose }: MapModalProps) {
                   </h3>
                   {mapData.displayIcon ? (
                     <div className="relative w-full aspect-square max-w-md mx-auto bg-black/50 border-4 border-[#39FF14] p-4 shadow-[0_0_20px_rgba(57,255,20,0.2)]">
-                      <img 
+                      <img loading="lazy" 
                         src={mapData.displayIcon} 
                         alt={`${mapData.name} Layout`} 
                         className="w-full h-full object-contain filter invert opacity-80" 
@@ -215,14 +233,14 @@ export default function MapModal({ mapData, onClose }: MapModalProps) {
                   {mapData.splash && (
                     <div className="border-4 border-black relative group overflow-hidden">
                       <div className="absolute top-2 left-2 bg-[#FF4655] text-white text-xs font-black uppercase px-2 py-1 z-10">Entry Angle</div>
-                      <img src={mapData.splash} alt="Splash" className="w-full h-auto transform transition-transform duration-700 group-hover:scale-110" />
+                      <img loading="lazy" src={mapData.splash} alt="Splash" className="w-full h-auto transform transition-transform duration-700 group-hover:scale-110" />
                     </div>
                   )}
 
                   {mapData.stylizedBackgroundImage && (
                     <div className="border-4 border-black relative group overflow-hidden">
                       <div className="absolute top-2 left-2 bg-[#00E5FF] text-black text-xs font-black uppercase px-2 py-1 z-10">Stylized Recon</div>
-                      <img src={mapData.stylizedBackgroundImage} alt="Stylized" className="w-full h-auto transform transition-transform duration-700 group-hover:scale-110" />
+                      <img loading="lazy" src={mapData.stylizedBackgroundImage} alt="Stylized" className="w-full h-auto transform transition-transform duration-700 group-hover:scale-110" />
                     </div>
                   )}
                 </motion.div>
